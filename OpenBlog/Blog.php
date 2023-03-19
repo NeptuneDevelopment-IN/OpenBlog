@@ -1,14 +1,15 @@
 <?php 
 
 class Blog {
-
+    
     protected $db;
     
     //Connect to the database
     public function __construct() {
         $this->db = new mysqli("", "", "", "");
         if ($this->db->connect_error) {
-            echo("Failed to connect to MySQL: " . $this->db->connect_error);
+            echo("Failed to connect to Database!");
+            
         }
     }
     

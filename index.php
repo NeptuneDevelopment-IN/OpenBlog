@@ -1,27 +1,37 @@
 <?php
 require_once 'OpenBlog/Router.php';
-require_once 'ob-config.php';
-
 
 
 $router = new Router();
 
-$router->addRoute('/', function() {
-    require 'Views/home.php';
+
+
+$router->get('/', function() {
+    include 'Views/home.php';
 });
 
-$router->addRoute('/users', function() {
-    require 'views/users.php';
+$router->get('/blog', function() {
+    include 'Views/blog.php';
 });
 
-$router->addRoute('/blog/{id}', function($id) {
-    require 'Views/blog.php';
+$router->get('/blog/{id}', function($id) {
+    include 'views/blog.php';
 });
 
-$router->addPattern('{id}', '\d+');
+$router->get('/install/1', function() {
+    include 'Views/installation/steps/1.php';
+});
 
-try {
-    $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
+$router->post('/install/1', function() {
+    include 'Views/installation/steps/2.php';
+});
+
+//if(!$config->get('is_installed')) {
+//    header('Location:/install/1');
+//}
+
+
+$router->post('/install/2', function() {
+    include 'Views/installation/steps/2.php';
+});
+$router->run();

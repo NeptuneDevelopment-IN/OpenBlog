@@ -2,8 +2,8 @@
 require_once(__DIR__ . '/../OpenBlog/Blog.php');
 $blog = new Blog();
 $blog_data = $blog->getBlog(base64_decode($id));
-if($blog_data == false || $id == null) {
-    header('HTTP/1.1 404 Not Found');
+if(!$blog_data) {
+    die('An Error Occured');
 }
 
 
