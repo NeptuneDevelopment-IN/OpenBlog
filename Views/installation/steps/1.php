@@ -24,17 +24,7 @@
         </div>
             <input type="submit" value="Next" class="block button mx-auto bg-green-400 px-6 rounded-full hover:bg-green-500 cursor-pointer py-2">
     </form>
-    <?php
 
-    require_once (__DIR__ . '/../../../OpenBlog/ConfigManager.php');
-    $config = new ConfigManager();
-    $config_data = $config->getConfig();
-    $config->configWrite('website_name', $_POST['website_name']);
-    $config->configWrite('website_description', $_POST['website_description']);
-
-
-
-    ?>
     <script>
     //    $('.button').click(function() {
     //        $.ajax({
