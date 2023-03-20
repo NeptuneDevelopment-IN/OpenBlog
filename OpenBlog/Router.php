@@ -8,6 +8,7 @@ class Router
     public function setBasePath($basePath)
     {
         $this->basePath = rtrim($basePath, '/');
+
     }
 
     public function get($route, $callback)

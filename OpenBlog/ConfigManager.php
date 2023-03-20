@@ -16,7 +16,7 @@ class ConfigManager {
         try {
             fwrite($cf, json_encode($config));
         } catch(Exception $ex) {
-            if($this->getConfig()['debug_mode'] == true) {
+            if($this->getConfig()['debug_mode']) {
                 throw new Exception('Error Occured while writing config file' . $ex->__toString());
             }
         }
@@ -25,7 +25,16 @@ class ConfigManager {
 
     public function getConfig() {
         $file  = fread(fopen(__DIR__. "/../config.json", "r"), filesize(__DIR__. "/../config.json"));
-        return json_decode($file, true);
+        return json_decode($file);
+    }
+
+    public function configWrite($key, $value) {
+        $file_read  = file_get_contents(__DIR__. "/../config.json");
+        $file_write  = fopen(__DIR__. "/../config.json", "w+");
+        $data = json_decode($file_read, true);
+        $data[$key] = $value;
+        fwrite($file_write, json_encode($data));
+        return $data;
     }
 
     
