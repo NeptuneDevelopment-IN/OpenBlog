@@ -1,11 +1,17 @@
 <?php
 require_once 'OpenBlog/Router.php';
 require_once 'OpenBlog/ConfigManager.php';
+require_once 'OpenBlog/ThemeManager.php';
 
 $config_ = new ConfigManager();
 $config_ = $config_->getConfig();
+$theme = new ThemeManager();
+if($config_['current_theme'] == null || !isset($config_['current_theme'])) {
+    exit('No theme selected for the website please select a theme through the admin dashboard.');
+}
+$current_theme = $config_['current_theme'];
+$theme->setTheme($current_theme);
 $router = new Router();
-
 
 
 $router->get('/', function() {

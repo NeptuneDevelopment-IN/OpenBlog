@@ -24,10 +24,15 @@ class Blog {
                 'author' => $row['author'],
                 'id' => $row['blog_id'],
                 'date_created' => $row['date_created'],
-
             );
             return $blog;
         }
         return false;
-    }    
+    }
+
+    //Function to get latest 'n' number the blogs from the server as an array
+    public function getNumBlogs($limit = 10) {
+        $sql = "SELECT * FROM blog_data LIMIT = {$limit}";
+        // Write some shit...
+    }
 }

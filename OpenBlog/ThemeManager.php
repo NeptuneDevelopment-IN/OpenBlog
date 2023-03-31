@@ -7,7 +7,7 @@ class ThemeManager
         $this->config = new ConfigManager();
     }
 
-
+    //Get the themes from the "Themes" folder
     public function getThemes() {
         $dir = __DIR__ . '/../Themes/';
         $files = scandir($dir);
@@ -19,7 +19,12 @@ class ThemeManager
         return $subdirs;
     }
 
-    public function setTheme() {
-
+    public function setTheme($theme_name) {
+        try {
+            $this->config->configWrite("selected_theme", $theme_name);
+        } catch (Exception $ex) {
+            return false;
+        }
+        return true;
     }
 }

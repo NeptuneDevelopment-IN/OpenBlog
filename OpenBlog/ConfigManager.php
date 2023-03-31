@@ -25,7 +25,7 @@ class ConfigManager {
 
     public function getConfig() {
         $file  = fread(fopen(__DIR__. "/../config.json", "r"), filesize(__DIR__. "/../config.json"));
-        return json_decode($file);
+        return json_decode($file, true);
     }
 
     public function configWrite($key, $value) {
@@ -34,7 +34,6 @@ class ConfigManager {
         $data = json_decode($file_read, true);
         $data[$key] = $value;
         fwrite($file_write, json_encode($data));
-        return $data;
     }
 
     
