@@ -2,3 +2,5 @@
 <p align=center>Open Blog is a upcoming free and open-source personal blogging software. It is under heavy development and testing</p>
 
 <p align=center>© 2023 Neptune Development</p>
+
+<H3>How much work have you done here while i am concentrating on purereader?, [Hunter]</H3>
