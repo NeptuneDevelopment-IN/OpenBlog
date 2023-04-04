@@ -12,7 +12,7 @@
 </head>
 <body class="bg-gray-700">
 <?php
-require_once ('../../../OpenBlog/ConfigManager.php');
+require_once (__DIR__. '/../../../OpenBlog/ConfigManager.php');
 $config = new ConfigManager();
 
 //Get the POST data from the previous file and assign variables
@@ -29,6 +29,7 @@ if(isset($_POST['database_name'])) {
     if($db_port == null) {
         $db_port = 3306;
     }
+    ini_set('display_errors', 0);
     $conn = new mysqli($db_host,$db_user, $db_pass, $db_name, $db_port);
 
     //Check by connecting if the database credentials are valid

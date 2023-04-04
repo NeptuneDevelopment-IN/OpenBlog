@@ -4,7 +4,11 @@ require_once (__DIR__ . '/../../../OpenBlog/ConfigManager.php');
 $config = new ConfigManager();
 if(isset($_POST['website_name'])) {
     $config_data = $config->getConfig();
-    $config->configWrite('website_name', $_POST['website_name']);
+    if($_POST['website_name'] == null) {
+        $config->configWrite('website_name',"Open Blog");
+    } else {
+        $config->configWrite('website_name', $_POST['website_name']);
+    }
     $config->configWrite('website_description', $_POST['website_description']);
 }
 

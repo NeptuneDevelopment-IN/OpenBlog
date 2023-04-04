@@ -25,17 +25,7 @@
             <input type="submit" value="Next" class="block button mx-auto bg-green-400 px-6 rounded-full hover:bg-green-500 cursor-pointer py-2">
     </form>
 
-    <script>
-    //    $('.button').click(function() {
-    //        $.ajax({
-    //            type: "POST",
-    //            url: "1_processor.php",
-    //            data: { name: "A" }
-    //        }).done(function( msg ) {
-    //            alert( "Data Saved: " + msg );
-    //        });
-    //    });
-    </script>
+
 
 </body>
 </html>
