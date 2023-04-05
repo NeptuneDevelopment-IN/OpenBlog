@@ -50,8 +50,8 @@ if(isset($_POST['database_name'])) {
 
     //Put the database credentials in the configuration file
     $config->configWrite('database_name', $db_name);
-    $config->configWrite('database_username', $db_user);
-    $config->configWrite('database_password', $db_pass);
+    $config->configWrite('database_user', $db_user);
+    $config->configWrite('database_pass', $db_pass);
     $config->configWrite('database_port', $db_port);
     $config->configWrite('database_host', $db_host);
 
@@ -63,7 +63,7 @@ if(isset($_POST['database_name'])) {
     <div class="px-12 grid grid-cols-2 gap-4">
     <div class="py-1">
         <label for="user_name" class="text-white font-bold">Username</label>
-        <input required placeholder="Your admin panel username" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="database_name" id="database_name" type="text">
+        <input required placeholder="Your admin panel username" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="username" id="database_name" type="text">
     </div>
     <div class="py-1">
         <label for="user_name" class="text-white font-bold">Nickname</label>

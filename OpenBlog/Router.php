@@ -43,13 +43,19 @@ class Router
             return;
         }
 
+        if (strpos($requestUrl, ".json") !== false) {
+            http_response_code(404);
+            echo '404 Not Found';
+            return;
+        }
+
         // Remove query string from URL
         $pos = strpos($requestUrl, '?');
         if ($pos !== false) {
             $requestUrl = substr($requestUrl, 0, $pos);
         }
 
-        $routes = isset($this->routes[$requestMethod]) ? $this->routes[$requestMethod] : array();
+        $routes = $this->routes[$requestMethod] ?? array();
     
         foreach ($routes as $route => $callback) {
             $pattern = str_replace('/', '\/', $route);

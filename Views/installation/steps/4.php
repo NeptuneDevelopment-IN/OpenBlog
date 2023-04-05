@@ -1,3 +1,27 @@
+<?php
+if(isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_pass = $_POST['confirm_password'];
+    $email_address = $_POST['email_address'];
+    $nickname = $_POST['nickname'];
+}
+
+if(!$password == $confirm_pass) {
+    exit('The both password do not match');
+}
+
+require_once(__DIR__. "/../../../OpenBlog/Database.php");
+$db = new Database();
+
+$sql = "CREATE TABLE IF NOT EXISTS user_data";
+
+
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">

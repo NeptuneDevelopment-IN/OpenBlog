@@ -7,7 +7,7 @@ class Authenticator {
     }
 
     public function userExists($email_address): bool {
-        $sql = "SELECT email_address FROM user_data WHERE email_address={$user_id}";
+        $sql = "SELECT email_address FROM user_data WHERE email_address={$email_address}";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) > 0) {
             return true;
