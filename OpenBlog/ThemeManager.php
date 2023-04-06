@@ -19,6 +19,7 @@ class ThemeManager
         return $subdirs;
     }
 
+    //Set theme to set the theme for the website
     public function setTheme($theme_name) {
         try {
             $this->config->configWrite("selected_theme", $theme_name);

@@ -52,10 +52,6 @@ if(isset($_POST['website_name'])) {
     </div>
 </form>
 
-<?php
-
-
-?>
 
 </body>
 </html>

@@ -38,6 +38,10 @@ $router->get('/install/3', function() {
     header('Location: /install');
 });
 
+$router->get('/install/4', function() {
+    header('Location: /install');
+});
+
 $router->get('/install', function() {
     include('Views/installation/installer.php');
 });
@@ -52,6 +56,10 @@ $router->post('/install/2', function() {
 
 $router->post('/install/3', function() {
     include 'Views/installation/steps/3.php';
+});
+
+$router->post('/install/4', function() {
+    include 'Views/installation/steps/4.php';
 });
 
 

@@ -1,28 +1,3 @@
-<?php
-if(isset($_POST['username'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_pass = $_POST['confirm_password'];
-    $email_address = $_POST['email_address'];
-    $nickname = $_POST['nickname'];
-}
-
-if(!$password == $confirm_pass) {
-    exit('The both password do not match');
-}
-
-require_once(__DIR__. "/../../../OpenBlog/Database.php");
-$db = new Database();
-
-$sql = "CREATE TABLE IF NOT EXISTS user_data";
-
-
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,21 +10,43 @@ $sql = "CREATE TABLE IF NOT EXISTS user_data";
 </head>
 <body class="bg-gray-700">
 <img src="../../../Assets/Logo_1.PNG" class="mx-auto h-[150px]" alt="">
-<h1 class="text-center font-bold text-2xl text-gray-300">Choose your website theme</h1>
-<h1 class="text-center font-bold text-xl text-gray-300">You can change this in the administrator panel later..</h1>
-<form action="/install/2" class="mx-auto px-[200px] py-3" method="post">
-    <div class="py-1">
-        <label for="website_name" class="text-white font-bold">Website Name *</label>
-        <input placeholder="OpenBlog" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="website_name" id="website_name" type="text">
+<?php
+
+if(isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirm_pass = $_POST['confirm_password'];
+    $email_address = $_POST['email_address'];
+    $nickname = $_POST['nickname'];
+    if($password != $confirm_pass) {
+        exit("
+            <div class=\"p-6\">
+        <div class=\"bg-gray-400 p-6 rounded-md\">
+            <h1 class=\"text-center text-gray-800 text-3xl font-bold\">The both passwords do not match</h1>
+        </div>
     </div>
-    <div class="py-1">
-        <label for="website_name" class="text-white font-bold">Website Description *</label>
-        <textarea required placeholder="Your Website Description" class="w-full h-[200px] resize-none bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" id="website_name" name="website_description" type="text"></textarea>
-    </div>
-    <input type="submit" value="Next" class="block button mx-auto bg-green-400 px-6 rounded-full hover:bg-green-500 cursor-pointer py-2">
-</form>
+    <form action='/install/3' method='post'>
+        <input class=\"block flex align-center button mx-auto bg-green-400 px-6 rounded-full hover:bg-green-500 cursor-pointer py-2\" name=\"database_pass\" value='Try Again' id=\"database_pass\" type=\"submit\">
+    </form>");
+    }
+}
 
+?>
+<div class="flex items-center justify-center">
+    <div class="inline-block animate-pulse w-12 h-12 inline-flex border-4 border-t-amber-500 rounded-full animate-spin"></div>
+    <h1 class="text-2xl text-white font-bold px-3">Finishing Installation</h1>
+</div>
+<?php
+require(dirname(__DIR__). '/../../OpenBlog/Authenticator.php');
 
+$auth = new Authenticator();
+$user = $auth->createUser($email_address, $password, $nickname);
 
+?>
+<style>
+    .animate-pulse {
+        animation-duration: 0.7s; /* Change spinning speed to loading circle */
+    }
+</style>
 </body>
 </html>

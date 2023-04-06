@@ -54,28 +54,37 @@ if(isset($_POST['database_name'])) {
     $config->configWrite('database_pass', $db_pass);
     $config->configWrite('database_port', $db_port);
     $config->configWrite('database_host', $db_host);
-
+    require(dirname(__DIR__). '/../../OpenBlog/Database.php');
+    $db = new Database();
+    $db->tableInit('blog_data', 'user_data');
+    //if(!$create_db) {
+    //    exit('Table already exists please delete the existing tables and try again');
+    //}
 }
 ?>
 <img src="../../../Assets/Logo_1.PNG" class="mx-auto h-[150px]" alt="">
 <h1 class="text-2xl text-white font-bold text-center">Set Administrator Panel Details</h1>
-<form action="/install/3" method="post">
+<form action="/install/4" method="post">
     <div class="px-12 grid grid-cols-2 gap-4">
     <div class="py-1">
         <label for="user_name" class="text-white font-bold">Username</label>
         <input required placeholder="Your admin panel username" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="username" id="database_name" type="text">
     </div>
     <div class="py-1">
+        <label for="user_name" class="text-white font-bold">Email Address</label>
+        <input required placeholder="Your admin panel email" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="email_address" id="database_name" type="email">
+    </div>
+    <div class="py-1">
         <label for="user_name" class="text-white font-bold">Nickname</label>
-        <input required placeholder="Nickname" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="database_name" id="database_name" type="text">
+        <input required placeholder="Nickname" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="nickname" id="database_name" type="text">
     </div>
     <div class="py-1">
         <label for="user_name" class="text-white font-bold">Password</label>
-        <input required placeholder="Password" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="database_name" id="database_name" type="password">
+        <input required placeholder="Password" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="password" id="database_name" type="password">
     </div>
     <div class="py-1">
         <label for="user_name" class="text-white font-bold">Confirm Password</label>
-        <input required placeholder="Confirm Password" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="database_name" id="database_name" type="password">
+        <input required placeholder="Confirm Password" class="w-full h-[35px] bg-gray-800 p-3 rounded-md text-gray-400 focus:border-2 focus:border-blue-100" name="confirm_password" id="database_name" type="password">
     </div>
     </div>
     <div class="py-3">
