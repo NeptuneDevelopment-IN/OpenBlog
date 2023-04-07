@@ -56,10 +56,10 @@ if(isset($_POST['database_name'])) {
     $config->configWrite('database_host', $db_host);
     require(dirname(__DIR__). '/../../OpenBlog/Database.php');
     $db = new Database();
-    $db->tableInit('blog_data', 'user_data');
-    //if(!$create_db) {
-    //    exit('Table already exists please delete the existing tables and try again');
-    //}
+    $create_db = $db->tableInit('blog_data', 'user_data');
+    if(!$create_db) {
+        exit('Table already exists please delete the existing tables and try again');
+    }
 }
 ?>
 <img src="../../../Assets/Logo_1.PNG" class="mx-auto h-[150px]" alt="">

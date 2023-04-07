@@ -22,7 +22,7 @@ class Database {
 
         $statement_1 = "
             CREATE TABLE IF NOT EXISTS {$table_user_data} (
-                user_id VARCHAR(16),
+                user_id VARCHAR(16) PRIMARY KEY,
                 email_address VARCHAR(128),
                 password_hash VARCHAR(255),
                 nickname VARCHAR(32),

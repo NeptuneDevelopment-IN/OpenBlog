@@ -37,10 +37,15 @@ if(isset($_POST['username'])) {
     <h1 class="text-2xl text-white font-bold px-3">Finishing Installation</h1>
 </div>
 <?php
-require(dirname(__DIR__). '/../../OpenBlog/Authenticator.php');
+require_once(dirname(__DIR__). '/../../OpenBlog/Authenticator.php');
+require_once(dirname(__DIR__). '/../../OpenBlog/ConfigManager.php');
 
 $auth = new Authenticator();
 $user = $auth->createUser($email_address, $password, $nickname);
+$config = new ConfigManager();
+$config->configWrite('is_installed', true);
+
+header('refresh:2;url=/');
 
 ?>
 <style>
