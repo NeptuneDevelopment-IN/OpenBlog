@@ -1,23 +1,24 @@
 <?php
-require_once(__DIR__ . "/../OpenBlog/ThemeManager.php");
-require_once(__DIR__ . "/../OpenBlog/ConfigManager.php");
-$config = new ConfigManager();
+require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
+
+require_once(__DIR__ . '/../OpenBlog/ConfigManager.php');
 $theme = new ThemeManager();
+$config = new ConfigManager();
+$themeList = $theme->getThemes();
+$currentTheme = $config->getConfig()['selected_theme'];
 
 
-// Read the contents of the JSON file into a string
-$jsonData = file_get_contents(__DIR__. "/../config.json");
+if($currentTheme == null) {
+    exit('No Theme Selected');
+}
 
-// Decode the JSON data into a PHP object
-$config = json_decode($jsonData);
-// Access the value of the "is_installed" key
-$isInstalled = $config->is_installed;
+if(in_array($currentTheme, $themeList)) {
+    ob_start(); // start output buffering
+    include(__DIR__ . "/../Themes/{$currentTheme}/pages/home.php");
+    $contents = ob_get_clean(); // get the buffered output and clear the buffer
+    $contents = str_replace('{{ blog_title }}', 'AAAAAAAAA', $contents);
+    echo $contents;
+}
 
-
-
-
-
-
-
-
+?>
 

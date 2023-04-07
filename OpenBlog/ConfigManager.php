@@ -2,7 +2,7 @@
 class ConfigManager {
     public function initConfig() {
         $config = array(
-            'is_installed' => '',
+            'is_installed' => false,
             'debug_mode' => false,
             'database_name' => '',
             'database_host' => '',
@@ -11,6 +11,7 @@ class ConfigManager {
             'database_port' => '',
             'website_name' => '',
             'website_description' => '',
+            'selected_theme' => ''
         );
         $cf = fopen(__DIR__. "/../config.json", "w+");
         try {

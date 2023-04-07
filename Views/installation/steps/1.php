@@ -1,4 +1,13 @@
+<?php
+require_once(__DIR__. '/../../../OpenBlog/ConfigManager.php');
+$config = new ConfigManager();
+try {
+    $config->initConfig();
+} catch (Exception $e) {
+    exit("Exception occurred while creating the config file");
+}
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

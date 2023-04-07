@@ -1,9 +1,3 @@
-<?php
-if(!$_SESSION['is_admin'] && !$_SESSION['is_logged_in']) {
-    exit('Access Denied');
-}
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,9 +5,9 @@ if(!$_SESSION['is_admin'] && !$_SESSION['is_logged_in']) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Welcome to Open Blog!</title>
 </head>
 <body>
-Admin Panel
+    <h1>This is the default theme of the application</h1>
 </body>
 </html>

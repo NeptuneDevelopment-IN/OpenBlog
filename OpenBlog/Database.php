@@ -28,7 +28,8 @@ class Database {
                 nickname VARCHAR(32),
                 bio VARCHAR(255),
                 create_date VARCHAR(32),
-                last_login VARCHAR(32)
+                last_login VARCHAR(32),
+                is_admin VARCHAR(8)
         )";
 
         $statement_2 = "

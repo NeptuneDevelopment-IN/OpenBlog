@@ -1,35 +1,35 @@
 <?php
+session_start();
+
+
 require_once 'OpenBlog/Router.php';
 require_once 'OpenBlog/ConfigManager.php';
 require_once 'OpenBlog/ThemeManager.php';
 
 $config_ = new ConfigManager();
-$config_ = $config_->getConfig();
 $theme = new ThemeManager();
-
-if($config_['current_theme'] == null || !isset($config_['current_theme'])) {
-    exit('No theme selected for the website please select a theme through the admin dashboard.');
-}
-$current_theme = $config_['current_theme'];
-$theme->setTheme($current_theme);
 $router = new Router();
 
 
 $router->get('/', function() {
     global $config_;
+    $config_ = $config_->getConfig();
+    if(!file_exists(__DIR__ . '/config.json')) {
+        exit('Open blog is not installed <a href="/install">Click Here</a> to install it');
+    }
     if(!$config_['is_installed']) {
-        exit('Open Blog is not installed <a href="/install">Click Here</a> to install.');
+        exit('Open blog is not installed <a href="/install">Click Here</a> to install it');
+    }
+    if($config_['selected_theme'] == null) {
+        exit('No theme selected please select it through the admin panel');
     }
     include 'Views/home.php';
 });
 
-$router->get('/blog', function() {
+$router->get('/blog/{id}', function($id) {
     include 'Views/blog.php';
 });
 
-$router->get('/blog/{id}', function($id) {
-    include 'views/blog.php';
-});
 
 $router->get('/install/1', function() {
     header('Location: /install');
@@ -41,6 +41,10 @@ $router->get('/install/2', function() {
 
 $router->get('/install/3', function() {
     header('Location: /install');
+});
+
+$router->get('/ob-administrator', function () {
+    include('Admin/views/panel.php');
 });
 
 $router->get('/install/4', function() {
@@ -67,8 +71,9 @@ $router->post('/install/4', function() {
     include 'Views/installation/steps/4.php';
 });
 
-$router->run();
 
+
+$router->run();
 
 
 

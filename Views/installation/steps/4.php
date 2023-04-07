@@ -39,11 +39,15 @@ if(isset($_POST['username'])) {
 <?php
 require_once(dirname(__DIR__). '/../../OpenBlog/Authenticator.php');
 require_once(dirname(__DIR__). '/../../OpenBlog/ConfigManager.php');
+require_once(dirname(__DIR__). '/../../OpenBlog/ThemeManager.php');
 
+$theme = new ThemeManager();
 $auth = new Authenticator();
 $user = $auth->createUser($email_address, $password, $nickname);
+$auth->loginUser($email_address);
 $config = new ConfigManager();
 $config->configWrite('is_installed', true);
+$theme->setTheme('Default');
 
 header('refresh:2;url=/');
 

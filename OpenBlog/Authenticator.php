@@ -99,19 +99,42 @@ class Authenticator {
                 nickname,
                 bio,
                 create_date,
-                last_login
+                last_login,
+                is_admin
+                                   
             ) VALUES (
                 '{$unique_id}',
                 '{$email}',
                 '{$pass_hash}',
-                   '{$nickname}',
+                '{$nickname}',
                 '{$bio}',
                 '{$cur_date}',
-                '{$cur_date}'
+                '{$cur_date}',
+                'true'
             )
         ";
         $this->db->conn->query($sql);
         echo($this->db->conn->error);
+    }
+
+    public function loginUser($email) {
+        $sql = "SELECT * FROM user_data WHERE email_address='${email}'";
+        $res = $this->db->conn->query($sql);
+        if(mysqli_num_rows($res) == 0) {
+            return false;
+        }
+        $res = mysqli_fetch_array($res);
+        session_start();
+        $_SESSION['is_logged_in'] = true;
+        $_SESSION['is_admin'] = $res['is_admin'];
+        $_SESSION['nickname'] = $res['nickname'];
+        $_SESSION['user_id'] = $res['user_id'];
+        $_SESSION['bio'] = $res['bio'];
+        $_SESSION['create_date'] = $res['create_date'];
+        $_SESSION['last_login'] = $res['last_login'];
+        $_SESSION['email_address'] = $res['email_address'];
+        echo(mysqli_error($this->db->conn));
+        return true;
     }
 
     public function deleteUser($email) {
