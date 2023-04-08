@@ -30,6 +30,13 @@ $router->get('/blog/{id}', function($id) {
     include 'Views/blog.php';
 });
 
+$router->get('/ob-administrator/themes', function() {
+    include 'Admin/views/themes.php';
+});
+
+$router->get('/ob-administrator/settings', function() {
+    include 'Admin/views/settings.php';
+});
 
 $router->get('/install/1', function() {
     header('Location: /install');

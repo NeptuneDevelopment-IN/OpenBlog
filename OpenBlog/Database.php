@@ -1,5 +1,5 @@
 <?php
-
+require_once ('ConfigManager.php');
 class Database {
 
     public function __construct() {
