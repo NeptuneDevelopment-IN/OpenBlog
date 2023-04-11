@@ -117,7 +117,7 @@ class Authenticator {
         echo($this->db->conn->error);
     }
 
-    public function loginUser($email) {
+    public function loginUser($email): bool {
         $sql = "SELECT * FROM user_data WHERE email_address='${email}'";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) == 0) {
@@ -139,6 +139,13 @@ class Authenticator {
 
     public function deleteUser($email) {
         // I'll write it later...
+    }
+
+    public function isLoggedIn():bool {
+        if( isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']) {
+            return true;
+        }
+        return false;
     }
 
 
