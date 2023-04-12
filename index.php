@@ -54,6 +54,14 @@ $router->get('/ob-administrator', function () {
     include('Admin/views/panel.php');
 });
 
+$router->get('/ob-administrator/new', function () {
+    include('Admin/views/new-post.php');
+});
+
+$router->post('/ob-administrator/new/preview', function () {
+    include('Admin/views/preview.php');
+});
+
 $router->get('/install/4', function() {
     header('Location: /install');
 });

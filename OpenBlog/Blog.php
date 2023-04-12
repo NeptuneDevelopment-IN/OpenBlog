@@ -34,6 +34,11 @@ class Blog {
     //Function to get latest 'n' number the blogs from the server as an array
     public function getNumBlogs($limit = 10) {
         $sql = "SELECT * FROM blog_data LIMIT = {$limit}";
-        // Write some shit...
+        $res = $this->db->conn->query($sql);
+        if(mysqli_num_rows($res) > 0) {
+            $row = mysqli_fetch_array($res);
+
+        }
+
     }
 }

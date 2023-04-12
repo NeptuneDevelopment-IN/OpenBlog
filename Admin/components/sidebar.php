@@ -54,4 +54,43 @@ $website_name = $config->getConfig()['website_name']
         border-width: 1px;
         border-color: rgba(149,158,149,0.82)
     }
+
+    ul {
+        transform-origin: top right;
+        animation-name: dropdown;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    ul.show {
+        animation-name: dropdown-show;
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    li a {
+        display: block;
+    }
+    @keyframes dropdown {
+        from {
+            opacity: 0;
+            transform: scaleY(0);
+        }
+        to {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+    @keyframes dropdown-show {
+        from {
+            opacity: 0;
+            transform: scaleY(0);
+        }
+        to {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+
 </style>
