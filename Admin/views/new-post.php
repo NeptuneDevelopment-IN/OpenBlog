@@ -11,15 +11,33 @@
     <title>Add a new post</title>
 </head>
 <body class="bg-[#1C2033] flex flex-wrap">
-    <?php include(__DIR__ . '/../components/sidebar.php') ?>
+    <?php
+
+    require_once (__DIR__. '/../../OpenBlog/Loader.php');
+    include(__DIR__ . '/../components/sidebar.php');
+    require_once (__DIR__. '/../../OpenBlog/ConfigManager.php');
+    $cm = new ConfigManager();
+    $currentTheme = $cm->getConfig()['selected_theme'];
+    $themeInfo = include(__DIR__ . "/../../Themes/{$currentTheme}/theme.php");
+    $baseColor = $themeInfo['base_color'];
+    $backgroundColor = $themeInfo['background_color'];
+    ?>
     <div class="flex-col flex-1 p-6">
         <form action="/ob-administrator/blog-processor" method="GET">
-            <label for="blog_title">Blog Title</label>
-            <input type="text" name="blog_title" id="blog_title">
-            <label for="blog_secondary_title">Seondary Title</label>
-            <input type="text" name="blog_secondary_title" id="blog_secondary_title">
-            <div id="editor-container" class="rounded"></div>
+            <div class="grid grid-cols-2 gap-4 pb-6">
+                <div class="flex flex-col">
+                    <label for="blog_title" class="text-white pb-2">Blog Title</label>
+                    <input type="text" name="blog_title" id="blog_title" class="h-[35px] p-3 bg-gray-300 outline-blue-500/50 rounded-md">
+                </div>
+                <div class="flex flex-col">
+                    <label for="blog_secondary_title" class="text-white pb-2">Secondary Title</label>
+                    <input type="text" name="blog_secondary_title" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50	 rounded-md">
+                </div>
+            </div>
 
+
+
+            <div id="editor-container" class="rounded"></div>
             <input type="hidden" name="content" id="content-input">
             <input type="submit" value="Submit">
         </form>
@@ -58,14 +76,14 @@
             }
 
             .ql-toolbar {
-                background-color: #4D4E54; /* Replace with your desired background color */
+                background-color: <?php echo($themeInfo['admin_textbox_bg_color']) ?>; /* Replace with your desired background color */
                 border: 5px;
                 border-radius: 5px;
             }
 
             .ql-toolbar .ql-stroke {
                 fill: none;
-                stroke: #fff;
+                stroke: <?php echo($themeInfo['admin_textbox_toolbar_icon_color']) ?>;
                 border: 5px;
                 border-radius: 5px;
             }

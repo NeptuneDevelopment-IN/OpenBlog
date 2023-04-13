@@ -1,5 +1,6 @@
 <?php
 session_start();
+define('REQUEST_FROM_INDEX', true);
 
 
 require_once 'OpenBlog/Router.php';
