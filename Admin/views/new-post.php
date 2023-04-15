@@ -23,23 +23,30 @@
     $backgroundColor = $themeInfo['background_color'];
     ?>
     <div class="flex-col flex-1 p-6">
-        <form action="/ob-administrator/blog-processor" method="GET">
+        <form action="/ob-administrator/blog-processor" method="POST">
             <div class="grid grid-cols-2 gap-4 pb-6">
                 <div class="flex flex-col">
                     <label for="blog_title" class="text-white pb-2">Blog Title</label>
-                    <input type="text" name="blog_title" id="blog_title" class="h-[35px] p-3 bg-gray-300 outline-blue-500/50 rounded-md">
+                    <input required type="text" name="blog_title" id="blog_title" class="h-[35px] p-3 bg-gray-300 outline-blue-500/50 rounded-md">
                 </div>
                 <div class="flex flex-col">
                     <label for="blog_secondary_title" class="text-white pb-2">Secondary Title</label>
-                    <input type="text" name="blog_secondary_title" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50	 rounded-md">
+                    <input required type="text" name="blog_secondary_title" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50	 rounded-md">
                 </div>
             </div>
 
-
-
             <div id="editor-container" class="rounded"></div>
-            <input type="hidden" name="content" id="content-input">
-            <input type="submit" value="Submit">
+            <input type="hidden" required name="content" id="content-input">
+
+            <div class="flex flex-col py-3">
+                <label for="blog_secondary_title" class="text-white pb-2">Tags (Use Commas to Separate)</label>
+                <input required type="text" name="tags" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50 rounded-md" placeholder="Tags">
+            </div>
+
+            <div class="p-3 block align-center text-center">
+                <input type="submit" class="bg-yellow-300 hover:bg-yellow-200 p-3 rounded-full cursor-pointer w-[150px]" value="Submit">
+                <input type="submit" class="bg-yellow-300 hover:bg-yellow-200 p-3 rounded-full cursor-pointer w-[150px] " formtarget="_blank" value="Preview">
+            </div>
         </form>
 
         <script>
@@ -71,12 +78,12 @@
         </script>
         <style>
             #editor-container {
-                background-color: #f0f0f0; /* Replace with your desired background color */
-                height: 500px; /* Set a height for the editor container */
+                background-color: #f0f0f0;
+                height: 500px;
             }
 
             .ql-toolbar {
-                background-color: <?php echo($themeInfo['admin_textbox_bg_color']) ?>; /* Replace with your desired background color */
+                background-color: <?php echo($themeInfo['admin_textbox_bg_color']) ?>;
                 border: 5px;
                 border-radius: 5px;
             }

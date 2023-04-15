@@ -41,4 +41,45 @@ class Blog {
         }
 
     }
+
+    public function generateBlogID(): string
+    {
+        $blog_id = $this->generateRandomID();
+        // Check if the user ID already exists in the database
+        while ($this->blogIDExists($blog_id)) {
+            // If it exists, generate a new user ID and check again
+            $user_id = $this->generateRandomID();
+        }
+        return $blog_id;
+    }
+
+    public function generateRandomID(): string {
+        $id = "";
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for ($i = 0; $i < 16; $i++) {
+            $id .= $characters[mt_rand(0, strlen($characters) - 1)];
+        }
+        return $id;
+    }
+
+    public function blogIDExists($blog_id): bool
+    {
+        $qqq = $this->db->conn->query("SELECT blog_id FROM blog_data WHERE blog_id='{$blog_id}'");
+        if (mysqli_num_rows($qqq) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public function addBlog($title, $secondary_title, $content, $author, $tags) {
+        $content = mysqli_real_escape_string($this->db->conn, $content);
+        $date_created = time();
+        $blog_id = $this->generateBlogID();
+        $sql = "INSERT INTO blog_data ( title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags)
+        VALUES ('{$title}', '{$secondary_title}', '{$content}', '{$author}', '{$blog_id}', '${date_created}', '0', '0', '{$tags}') ";
+        $this->db->conn->query($sql);
+        echo('<br>' . mysqli_error($this->db->conn));
+
+    }
+
 }

@@ -23,8 +23,8 @@ return [
 
     'admin_textbox_toolbar_bg_color' => '#00000',
     'admin_textbox_toolbar_icon_color' => '#fff',
-    'admin_textbox_bg_color' => '',
-    'admin_textbox_default_text_color' => '',
+    'admin_textbox_bg_color' => 'black',
+    'admin_textbox_default_text_color' => 'white',
 
 
 

@@ -1,4 +1,5 @@
 <?php
+include(__DIR__ . '/../OpenBlog/Loader.php');
 
 require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
 require_once(__DIR__ . '/../OpenBlog/Blog.php');
@@ -31,6 +32,8 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ date_created }}', $blog_info['date_created'], $contents);
     $contents = str_replace('{{ secondary_title }}', $blog_info['secondary_title'], $contents);
     $contents = str_replace('{{ content }}', $blog_info['content'], $contents);
+    $contents = str_replace('{{ author_id }}', $blog_info['author'], $contents);
+
 
 }
 ?>

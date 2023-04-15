@@ -1,4 +1,14 @@
 <!-- Navbar goes here -->
+
+<?php
+require_once(__DIR__ . '/../../../OpenBlog/ConfigManager.php');
+$config = new ConfigManager();
+
+$website_name = $config->getConfig()['website_name'];
+$website_description = $config->getConfig()['website_name'];
+
+?>
+
 <nav class="bg-white shadow-lg">
     <div class="max-w-6xl mx-auto px-4">
         <div class="flex justify-between">
@@ -6,7 +16,7 @@
                 <div>
                     <!-- Website Logo -->
                     <a href="#" class="flex items-center py-4 px-2">
-                        <span class="font-semibold text-gray-500 text-lg">Navigation</span>
+                        <span class="font-semibold text-gray-500 text-lg"><?php echo $website_name ?></span>
                     </a>
                 </div>
                 <!-- Primary Navbar items -->

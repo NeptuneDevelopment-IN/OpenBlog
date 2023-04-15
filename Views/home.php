@@ -1,6 +1,7 @@
 <?php
-require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
+include(__DIR__ . '/../OpenBlog/Loader.php');
 
+require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
 require_once(__DIR__ . '/../OpenBlog/ConfigManager.php');
 $theme = new ThemeManager();
 $config = new ConfigManager();

@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 define('REQUEST_FROM_INDEX', true);
@@ -59,8 +60,8 @@ $router->get('/ob-administrator/new', function () {
     include('Admin/views/new-post.php');
 });
 
-$router->post('/ob-administrator/new/preview', function () {
-    include('Admin/views/preview.php');
+$router->post('/ob-administrator/blog-processor', function () {
+    include('Admin/views/post-processor.php');
 });
 
 $router->get('/install/4', function() {

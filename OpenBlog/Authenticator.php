@@ -147,6 +147,15 @@ class Authenticator {
         }
         return false;
     }
+    public function getUser($id) {
+        $sql = "SELECT * FROM user_data WHERE user_id='{$id}'";
+        $res = $this->db->conn->query($sql);
+        $row = mysqli_fetch_array($res);
+        $data = array(
+            'nickname' => $row['nickname'],
+            'bio' => $row['bio'],
+        );
+    }
 
 
 
