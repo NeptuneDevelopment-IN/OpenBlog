@@ -1,3 +1,5 @@
+<?php require_once (__DIR__. '/../../../OpenBlog/Loader.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -5,7 +5,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../OpenBlog/ThirdPartyLibs/Quill/quill.min.js"></script>
     <link rel="stylesheet" href="../../OpenBlog/ThirdPartyLibs/Quill/themes/quill.snow.css">
 
@@ -90,6 +89,7 @@
                 }
             }
 
+
             function saveToServer(files) {
                 const formData = new FormData();
                 files.forEach(file => formData.append('images[]', file));
@@ -103,9 +103,11 @@
                         data.forEach(url => insertToEditor(url));
                     }
                 };
+                //Send the data to the server
                 xhr.send(formData);
             }
 
+            //Insert the images that are uploaded to the server in the editor
             function insertToEditor(url) {
                 // push image url to rich editor.
                 const range = quill.getSelection();

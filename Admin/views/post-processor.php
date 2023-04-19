@@ -2,6 +2,7 @@
 
 <div id="quill-editor" class="ql-editor" style="font-family: Arial; text-align: left;">
 <?php
+require_once (__DIR__. '/../../OpenBlog/Loader.php');
 
 
 if(isset($_POST['preview'])) {

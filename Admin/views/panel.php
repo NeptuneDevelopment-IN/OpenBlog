@@ -2,7 +2,8 @@
 if(!$_SESSION['is_admin'] && !$_SESSION['is_logged_in']) {
     exit('Access Denied');
 }
-require_once(__DIR__ . '/../../OpenBlog/Router.php');
+require_once (__DIR__. '/../../OpenBlog/Loader.php');
+
 
 ?>
 <!doctype html>

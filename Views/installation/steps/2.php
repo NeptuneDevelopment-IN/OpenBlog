@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/../../../OpenBlog/Loader.php');
 
 require_once (__DIR__ . '/../../../OpenBlog/ConfigManager.php');
 $config = new ConfigManager();
