@@ -8,6 +8,10 @@
     <title>Welcome to Open Blog!</title>
 </head>
 <body>
-    <h1>This is the default theme of the application</h1>
+    <?php
+    include (__DIR__ . '/../components/navbar.php');
+    ?>
+    <h1 class="text-3xl p-6 text-gray-700">Latest Blogs</h1>
+
 </body>
 </html>

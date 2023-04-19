@@ -14,5 +14,14 @@ if (!defined('REQUEST_FROM_INDEX') || REQUEST_FROM_INDEX !== true) {
     exit();
 }
 
+require_once(__DIR__.'/ConfigManager.php');
+$config = new ConfigManager();
+$currentTheme = $config->getConfig()['selected_theme'];
+$themeConfig = include(__DIR__ . "/../Themes/{$currentTheme}/theme.php");
+
+if($themeConfig['include_tailwind']) {
+    echo('<script src="https://cdn.tailwindcss.com"></script>');
+}
+
 
 

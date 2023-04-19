@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../OpenBlog/ThirdPartyLibs/Quill/quill.min.js"></script>
-    <link rel="stylesheet" href="../../OpenBlog/ThirdPartyLibs/Quill/quill.snow.css">
+    <link rel="stylesheet" href="../../OpenBlog/ThirdPartyLibs/Quill/themes/quill.snow.css">
+
     <title>Add a new post</title>
 </head>
 <body class="bg-[#1C2033] flex flex-wrap">
@@ -21,9 +22,10 @@
     $themeInfo = include(__DIR__ . "/../../Themes/{$currentTheme}/theme.php");
     $baseColor = $themeInfo['base_color'];
     $backgroundColor = $themeInfo['background_color'];
+
     ?>
     <div class="flex-col flex-1 p-6">
-        <form action="/ob-administrator/blog-processor" method="POST">
+        <form action="/ob-administrator/blog-processor" method="POST" >
             <div class="grid grid-cols-2 gap-4 pb-6">
                 <div class="flex flex-col">
                     <label for="blog_title" class="text-white pb-2">Blog Title</label>
@@ -35,7 +37,8 @@
                 </div>
             </div>
 
-            <div id="editor-container" class="rounded"></div>
+            <div id="editor-container" class="rounded">
+            </div>
             <input type="hidden" required name="content" id="content-input">
 
             <div class="flex flex-col py-3">
@@ -53,28 +56,69 @@
             var quill = new Quill('#editor-container', {
                 // Quill configuration options
                 modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        ['image', 'video'],
-                        ['link'],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                        [{ 'header': [1, 2, 3, false] }],
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
-                        ['clean']
-                    ]
+                    toolbar: {
+                        container: [
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'align': [] }],
+                            [{ 'color': [] }, { 'background': [] }],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            [{ 'header': [1, 2, 3, false] }],
+                            ['link', 'image', 'video', 'formula'],
+                            ['clean']
+                        ],
+
+                    }
+
                 },
-                theme: 'snow'
+                theme: 'snow',
+
             });
 
-            // Add event listener to form submission
-            document.querySelector('form').addEventListener('submit', function(event) {
-                // Get the HTML content from Quill editor
-                var content = quill.root.innerHTML;
 
-                // Set the HTML content as the value of the hidden input field
-                document.getElementById('content-input').value = content;
+
+            function selectLocalImage() {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('multiple', 'multiple');
+                input.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/webp')
+                input.click();
+
+                // Listen upload local image and save to server
+                input.onchange = () => {
+                    const fileList = Array.from(input.files);
+                    saveToServer(fileList);
+                }
+            }
+
+            function saveToServer(files) {
+                const formData = new FormData();
+                files.forEach(file => formData.append('images[]', file));
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '//' + window.location.host + '/ob-administrator/upload-img', true);
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                        const data = JSON.parse(xhr.responseText).data;
+                        data.forEach(url => insertToEditor(url));
+                    }
+                };
+                xhr.send(formData);
+            }
+
+            function insertToEditor(url) {
+                // push image url to rich editor.
+                const range = quill.getSelection();
+                quill.insertEmbed(range.index, 'image', url);
+            }
+
+            // quill editor add image handler
+            quill.getModule('toolbar').addHandler('image', () => {
+                selectLocalImage();
             });
+
+
+
         </script>
         <style>
             #editor-container {

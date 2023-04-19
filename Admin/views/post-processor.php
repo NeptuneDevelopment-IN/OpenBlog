@@ -2,6 +2,8 @@
 
 <div id="quill-editor" class="ql-editor" style="font-family: Arial; text-align: left;">
 <?php
+
+
 if(isset($_POST['preview'])) {
     if(isset($_POST['blog_title'])) {
         echo($_POST['content']);
@@ -15,6 +17,7 @@ if(isset($_POST['preview'])) {
     $author = $_SESSION['user_id'];
     $tags = $_POST['tags'];
     $blog->addBlog($title, $secondary_title, $content, $author, $tags);
+
 }
 ?>
 </div>

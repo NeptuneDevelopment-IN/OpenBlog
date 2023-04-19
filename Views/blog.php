@@ -4,6 +4,8 @@ include(__DIR__ . '/../OpenBlog/Loader.php');
 require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
 require_once(__DIR__ . '/../OpenBlog/Blog.php');
 require_once(__DIR__ . '/../OpenBlog/ConfigManager.php');
+
+
 $theme = new ThemeManager();
 $config = new ConfigManager();
 $blog = new Blog();
@@ -34,7 +36,6 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ content }}', $blog_info['content'], $contents);
     $contents = str_replace('{{ author_id }}', $blog_info['author'], $contents);
 
-
 }
 ?>
 
@@ -45,14 +46,12 @@ if(in_array($currentTheme, $themeList)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $blog_info['title'] ?></title>
+
 </head>
 <body>
 <?php
 include(__DIR__. "/../Themes/{$currentTheme}/components/navbar.php");
 echo $contents; ?>
-
-
 
 </body>
 </html>

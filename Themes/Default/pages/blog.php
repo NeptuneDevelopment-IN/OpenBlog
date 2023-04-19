@@ -1,6 +1,4 @@
-<script src="https://cdn.tailwindcss.com"></script>
 <main>
-
 
     <link rel="stylesheet" href="../../../OpenBlog/ThirdPartyLibs/Quill/quill.snow.css">
     <div class="grid grid-cols-1 md:grid-cols-3 p-6 ">

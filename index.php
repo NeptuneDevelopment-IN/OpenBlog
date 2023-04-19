@@ -40,6 +40,10 @@ $router->get('/ob-administrator/settings', function() {
     include 'Admin/views/settings.php';
 });
 
+$router->post('/ob-administrator/upload-img', function() {
+    include 'Admin/views/image-uploader.php';
+});
+
 $router->get('/install/1', function() {
     header('Location: /install');
 });

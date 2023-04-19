@@ -8,6 +8,12 @@ return [
     'author' => 'Vedant Mulay',
     'license' => 'GPL-3',
     /*
+     * If you want to use tailwindcss for making
+     * themes it will automatically include the tailwindcss file
+     * in the page.
+     */
+    'include_tailwind' => true,
+     /*
      * Color Settings Related to the front end.
      * Not much as you can customize it in the view itself
      */

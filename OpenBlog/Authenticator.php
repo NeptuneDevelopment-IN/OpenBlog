@@ -153,8 +153,12 @@ class Authenticator {
         $row = mysqli_fetch_array($res);
         $data = array(
             'nickname' => $row['nickname'],
+            'email_address' => $row['email_address'],
             'bio' => $row['bio'],
+            'create_date' => $row['create_date'],
+            'last_login' => $row['last_login'],
         );
+        return $data;
     }
 
 
