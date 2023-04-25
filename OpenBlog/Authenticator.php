@@ -152,6 +152,7 @@ class Authenticator {
         $res = $this->db->conn->query($sql);
         $row = mysqli_fetch_array($res);
         $data = array(
+            'is_admin' => $row['is_admin'],
             'nickname' => $row['nickname'],
             'email_address' => $row['email_address'],
             'bio' => $row['bio'],

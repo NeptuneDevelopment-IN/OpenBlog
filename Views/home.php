@@ -3,10 +3,11 @@ include(__DIR__ . '/../OpenBlog/Loader.php');
 
 require_once(__DIR__ . '/../OpenBlog/ThemeManager.php');
 require_once(__DIR__ . '/../OpenBlog/ConfigManager.php');
-include_once (__DIR__ . '/../OpenBlog/Loader.php');
+include_once (__DIR__ . '/../OpenBlog/Blog.php');
 
 $theme = new ThemeManager();
 $config = new ConfigManager();
+$blog = new Blog();
 $themeList = $theme->getThemes();
 $currentTheme = $config->getConfig()['selected_theme'];
 
@@ -19,6 +20,9 @@ if(in_array($currentTheme, $themeList)) {
     ob_start(); // start output buffering
     include(__DIR__ . "/../Themes/{$currentTheme}/pages/home.php");
     $contents = ob_get_clean(); // get the buffered output and clear the buffer
+
+
+
 }
 
 ?>
@@ -30,7 +34,6 @@ if(in_array($currentTheme, $themeList)) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 </head>
 <body>
     <?php echo $contents ?>

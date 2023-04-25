@@ -15,16 +15,15 @@ $website_description = $config->getConfig()['website_name'];
             <div class="flex space-x-7">
                 <div>
                     <!-- Website Logo -->
-                    <a href="#" class="flex items-center py-4 px-2">
+                    <a href="/" class="flex items-center py-4 px-2">
                         <span class="font-semibold text-gray-500 text-lg"><?php echo $website_name ?></span>
                     </a>
                 </div>
                 <!-- Primary Navbar items -->
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">Home</a>
-                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Services</a>
-                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">About</a>
-                    <a href="" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
+                    <a href="/" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
+                    <a href="/authors" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Authors</a>
+                    <a href="/contact" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
                 </div>
             </div>
             <!-- Secondary Navbar items -->
@@ -37,10 +36,9 @@ $website_description = $config->getConfig()['website_name'];
                     $nickname = $_SESSION['nickname'];
                     echo ("<a href='/profile/{$user_id}' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>{$nickname}</a>");
                 } else {
-                    echo("<a href='' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>Log In</a>
-                <a href='' class='py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300'>Sign Up</a>");
+                    echo("<a href='/login' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>Log In</a>
+                <a href='/signup' class='py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300'>Sign Up</a>");
                 }
-
 
                 ?>
 
@@ -66,10 +64,9 @@ $website_description = $config->getConfig()['website_name'];
     <!-- mobile menu -->
     <div class="hidden mobile-menu">
         <ul class="">
-            <li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a></li>
-            <li><a href="#services" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Services</a></li>
-            <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">About</a></li>
-            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
+            <li><a href="/" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Home</a></li>
+            <li><a href="/authors" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Authors</a></li>
+            <li><a href="/contact" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact Us</a></li>
         </ul>
     </div>
     <script>

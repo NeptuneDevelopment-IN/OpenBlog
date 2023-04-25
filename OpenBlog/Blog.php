@@ -33,12 +33,16 @@ class Blog {
 
     //Function to get latest 'n' number the blogs from the server as an array
     public function getNumBlogs($limit = 10) {
-        $sql = "SELECT * FROM blog_data LIMIT = {$limit}";
+        $sql = "SELECT * FROM blog_data LIMIT {$limit} ";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) > 0) {
-            $row = mysqli_fetch_array($res);
-
+            $data = array();
+            while ($row = mysqli_fetch_array($res)) {
+                $data[] = $row;
+            }
+            return $data;
         }
+        return false;
 
     }
 
@@ -77,8 +81,12 @@ class Blog {
         $blog_id = $this->generateBlogID();
         $sql = "INSERT INTO blog_data ( title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags)
         VALUES ('{$title}', '{$secondary_title}', '{$content}', '{$author}', '{$blog_id}', '${date_created}', '0', '0', '{$tags}') ";
-        $this->db->conn->query($sql);
-        echo('<br>' . mysqli_error($this->db->conn));
+        $query = $this->db->conn->query($sql);
+        if($query) {
+            echo("<h1 class='text-3xl text-center'> Blog Added Successfully! <br> <a href='/blog/{$blog_id}'>Blog Link</a></h1>");
+        }
+        echo(mysqli_error($this->db->conn));
+
 
     }
 

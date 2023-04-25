@@ -7,11 +7,14 @@ define('REQUEST_FROM_INDEX', true);
 require_once 'OpenBlog/Router.php';
 require_once 'OpenBlog/ConfigManager.php';
 require_once 'OpenBlog/ThemeManager.php';
+require_once 'OpenBlog/Authenticator.php';
+
 
 $config_ = new ConfigManager();
 $theme = new ThemeManager();
 $router = new Router();
 
+$currentTheme = $config_->getConfig()['selected_theme'];
 
 $router->get('/', function() {
     global $config_;
@@ -31,6 +34,11 @@ $router->get('/', function() {
 $router->get('/blog/{id}', function($id) {
     include 'Views/blog.php';
 });
+
+$router->get('/profile/{id}', function($id) {
+    include 'Views/profile.php';
+});
+
 
 $router->get('/ob-administrator/themes', function() {
     include 'Admin/views/themes.php';
@@ -70,6 +78,11 @@ $router->post('/ob-administrator/blog-processor', function () {
 
 $router->get('/install/4', function() {
     header('Location: /install');
+});
+
+$router->get('/internal-error', function() {
+    global $currentTheme;
+    include("Themes/{$currentTheme}/errors/internal.php");
 });
 
 $router->get('/install', function() {

@@ -14,14 +14,31 @@ if (!defined('REQUEST_FROM_INDEX') || REQUEST_FROM_INDEX !== true) {
     exit();
 }
 
+
 require_once(__DIR__.'/ConfigManager.php');
 $config = new ConfigManager();
 $currentTheme = $config->getConfig()['selected_theme'];
 $themeConfig = include(__DIR__ . "/../Themes/{$currentTheme}/theme.php");
 
+function errorHandlerOpenBlog() {
+    global $currentTheme;
+    header("Location: /internal-error");
+    die(); // stop script execution
+
+}
+
+if(!$config->getConfig()['debug_mode']) {
+    ini_set('display_errors', false);
+    set_error_handler("errorHandlerOpenBlog");
+}
+
 if($themeConfig['include_tailwind']) {
     echo('<script src="https://cdn.tailwindcss.com"></script>');
 }
+
+
+
+//Error Handler
 
 
 
