@@ -124,7 +124,9 @@ class Authenticator {
             return false;
         }
         $res = mysqli_fetch_array($res);
-        session_start();
+        if(session_status() == 'PHP_SESSION_NONE ') {
+            session_start();
+        }
         $_SESSION['is_logged_in'] = true;
         $_SESSION['is_admin'] = $res['is_admin'];
         $_SESSION['nickname'] = $res['nickname'];
@@ -160,6 +162,16 @@ class Authenticator {
             'last_login' => $row['last_login'],
         );
         return $data;
+    }
+    public function passwordHash($email) {
+        $email = mysqli_real_escape_string($this->db->conn, $email);
+        $sql = "SELECT email_address,password_hash FROM user_data WHERE email_address='{$email}'";
+        $res = $this->db->conn->query($sql);
+        $row = mysqli_fetch_array($res);
+        if($res) {
+            return $row['password_hash'];
+        }
+        return false;
     }
 
 

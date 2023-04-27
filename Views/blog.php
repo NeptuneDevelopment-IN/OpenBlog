@@ -34,7 +34,7 @@ if(in_array($currentTheme, $themeList)) {
     $contents = ob_get_clean();
     $contents = str_replace('{{ blog_id }}', $id, $contents);
     $contents = str_replace('{{ blog_title }}', $blog_info['title'], $contents);
-    $contents = str_replace('{{ date_created }}', $blog_info['date_created'], $contents);
+    $contents = str_replace('{{ date_created }}', date("l d F Y", $blog_info['date_created']), $contents);
     $contents = str_replace('{{ secondary_title }}', $blog_info['secondary_title'], $contents);
     $contents = str_replace('{{ content }}', $blog_info['content'], $contents);
     $contents = str_replace('{{ author_id }}', $blog_info['author'], $contents);
@@ -42,6 +42,7 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ author_bio }}', $author_details['bio'], $contents);
     $contents = str_replace('{{ is_admin }}', $author_details['is_admin'], $contents);
     $contents = str_replace('{{ author_join }}', date("l d F Y", $author_details['create_date']), $contents);
+    $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
 
 }
 ?>

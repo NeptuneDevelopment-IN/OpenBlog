@@ -21,8 +21,6 @@ if(in_array($currentTheme, $themeList)) {
     include(__DIR__ . "/../Themes/{$currentTheme}/pages/home.php");
     $contents = ob_get_clean(); // get the buffered output and clear the buffer
 
-
-
 }
 
 ?>

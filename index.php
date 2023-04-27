@@ -106,6 +106,17 @@ $router->post('/install/4', function() {
 });
 
 
+$router->get('/login', function() {
+    include('Views/auth/login.php');
+});
+
+$router->get('/logout', function() {
+    include('Views/auth/logout.php');
+});
+
+$router->post('/login', function() {
+    include('Views/auth/login.php');
+});
 
 $router->run();
 
