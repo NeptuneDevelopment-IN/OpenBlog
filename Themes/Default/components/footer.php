@@ -6,14 +6,18 @@ $website_description = $config->getConfig()['website_description'];
 
 ?>
 <footer class="sticky top-[100vh] w-full pt-6 drop-shadow-xl">
-    <div class="bg-gray-300">
-        <div class="grid grid-cols-1 md:grid-cols-5">
-            <div class="p-3">
-                <h1 class="col-span-3 font-bold text-2xl text-center md:text-left"><?php echo $website_name ?></h1>
-                <p class="text-base text-center md:text-left"><?php echo $website_description ?></p>
-            </div>
+    <div class="flex items-center justify-center bg-[#E6F1EA]">
+    <div class="flex flex-col">
+        <div class="flex mt-12 mb-12 flex-row justify-between">
+            <a href="https://github.com/NeptuneDevelopment-IN" class=" px-2 md:block cursor-pointer text-gray-800 hover:text-green-500 uppercase">GITHUB</a>
+            <a href="https://github.com/NeptuneDevelopment-IN/OpenBlog" class=" px-2 md:block cursor-pointer text-gray-800 hover:text-green-500 uppercase">OPEN BLOG</a>
+            <a href="/" class=" px-2 md:block cursor-pointer text-gray-800 hover:text-green-500 uppercase">Newsletter</a>
         </div>
-        <h1 class="text-center py-3 font-bold">&copy; 2023 Neptune Development | <a href="https://github.com/NeptuneDevelopment-IN/OpenBlog" class="underline">Open Blog</a> [v1.0]</h1>
-
+        <hr class="border-gray-600"/>
+        <div class="my-8">
+            <p class="w-full text-center text-gray-800">Running on Open Blog</p>
+            <p class="w-full text-center text-gray-800">Copyright © 2023 Neptune Development</p>
+        </div>
+    </div>
     </div>
 </footer>
