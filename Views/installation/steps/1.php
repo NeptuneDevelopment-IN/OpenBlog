@@ -1,13 +1,8 @@
 <?php
-require_once(__DIR__ . '/../../../OpenBlog/Loader.php');
 
 require_once(__DIR__. '/../../../OpenBlog/ConfigManager.php');
 $config = new ConfigManager();
-try {
-    $config->initConfig();
-} catch (Exception $e) {
-    exit("Exception occurred while creating the config file");
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -35,8 +30,6 @@ try {
         </div>
             <input type="submit" value="Next" class="block button mx-auto bg-green-400 px-6 rounded-full hover:bg-green-500 cursor-pointer py-2">
     </form>
-
-
 
 </body>
 </html>

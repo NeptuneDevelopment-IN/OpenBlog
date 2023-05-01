@@ -16,6 +16,7 @@
     $website_name = $config->getConfig()['website_name'];
     $website_description = $config->getConfig()['website_description'];
 
+
     ?>
     <div class="flex-col flex-1 p-6">
         <h1 class="text-white font-bold text-3xl">Website Settings</h1>
@@ -24,15 +25,46 @@
         </div>
         <form action="/ob-administrator/settings" method="post">
             <div class="py-1">
-                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website name</label>
-                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $website_name ?>" required>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-white">Website name</label>
+                <input type="text" name="website_name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $website_name ?>" required>
             </div>
             <div class="py-1">
-                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website Description</label>
-                <textarea type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-[250px] w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $website_description ?>" required></textarea>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-white">Website Description</label>
+                <textarea type="text" id="first_name" name="website_description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block h-[250px] w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<?php echo $website_description ?>" ></textarea>
             </div>
+            <div class="py-1">
+                <label for="display_errors" class="mb-2 text-sm font-medium text-white">Debug Mode</label>
+                <select name="display_errors" class="w-[150px] h-[30px] rounded-md" id="display_errors">
+                    <?php
+                    if($config->getConfig()['debug_mode']) {
+                        echo('<option value="true" selected>Yes</option>
+                    <option value="false">No</option>');
+                    } else {
+                        echo('<option value="true">Yes</option>
+                    <option value="false" selected>No</option>');
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit" class="block mx-left w-[150px] h-[40px] rounded bg-blue-500 hover:bg-blue-500/90" name="change_data">Save</button>
         </form>
     </div>
+<?php
+if(isset($_POST['change_data'])) {
+    $config->configWrite('website_name', $_POST['website_name']);
+    if(isset($_POST['website_description'])) {
+        $config->configWrite('website_description', $_POST['website_description']);
+    }
+    $display_errors = false;
+    if($_POST['display_errors'] == "true") {
+        $display_errors = true;
+    }
+    $config->configWrite('debug_mode', $display_errors);
+
+
+}
+
+?>
 
 </body>
 </html>

@@ -16,7 +16,6 @@ $currentTheme = $config->getConfig()['selected_theme'];
 $blog_info = $blog->getBlog($id);
 $author_details = $auth->getUser($blog_info['author']);
 
-
 if($currentTheme == null) {
     exit('No Theme Selected');
 }
@@ -43,17 +42,18 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ is_admin }}', $author_details['is_admin'], $contents);
     $contents = str_replace('{{ author_join }}', date("l d F Y", $author_details['create_date']), $contents);
     $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
-
 }
 ?>
-
 
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog post about <?php echo $blog_info['title']; ?>">
+    <meta name="keywords" content="<?php echo implode(',', $blog_info['tags']); ?>">
+    <meta name="author" content="<?php echo $author_details['nickname']; ?>">
+    <title><?php echo $blog_info['title']; ?></title>
     <link rel="stylesheet" href="../../OpenBlog/OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.css">
 
 </head>

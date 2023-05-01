@@ -30,7 +30,6 @@ if(isset($_POST['database_name'])) {
     if($db_port == null) {
         $db_port = 3306;
     }
-    ini_set('display_errors', 0);
     $conn = new mysqli($db_host,$db_user, $db_pass, $db_name, $db_port);
 
     //Check by connecting if the database credentials are valid

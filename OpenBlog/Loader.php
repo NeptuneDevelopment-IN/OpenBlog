@@ -17,8 +17,6 @@ if (!defined('REQUEST_FROM_INDEX') || REQUEST_FROM_INDEX !== true) {
 
 require_once(__DIR__.'/ConfigManager.php');
 $config = new ConfigManager();
-$currentTheme = $config->getConfig()['selected_theme'];
-$themeConfig = include(__DIR__ . "/../Themes/{$currentTheme}/theme.php");
 
 function errorHandlerOpenBlog() {
     global $currentTheme;
@@ -32,9 +30,7 @@ if(!$config->getConfig()['debug_mode']) {
     set_error_handler("errorHandlerOpenBlog");
 }
 
-if($themeConfig['include_tailwind']) {
-    echo('<script src="https://cdn.tailwindcss.com"></script>');
-}
+echo('<script src="https://cdn.tailwindcss.com"></script>');
 
 
 

@@ -1,5 +1,5 @@
 <script src="../../OpenBlog/ThirdPartyLibs/jQuery/jquery-3.6.4.min.js"></script>
-<script src="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.js"></script>
+<script src="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.min.js"></script>
 <link rel="stylesheet" href="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.css">
 
 <div id="quill-editor" class="ql-editor" style="font-family: Arial; text-align: left;">

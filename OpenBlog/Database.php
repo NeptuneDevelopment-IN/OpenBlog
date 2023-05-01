@@ -34,7 +34,8 @@ class Database {
 
         $statement_2 = "
             CREATE TABLE IF NOT EXISTS {$table_blog_data} (
-                blog_id VARCHAR(32) PRIMARY KEY,
+                id int PRIMARY KEY AUTO_INCREMENT,
+                blog_id VARCHAR(32) UNIQUE,
                 title VARCHAR(64),
                 secondary_title VARCHAR(32),
                 content VARCHAR(15000),

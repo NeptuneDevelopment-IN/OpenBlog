@@ -1,4 +1,3 @@
-<?php require_once (__DIR__. '/../../../OpenBlog/Loader.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +47,7 @@ $auth = new Authenticator();
 $user = $auth->createUser($email_address, $password, $nickname);
 $auth->loginUser($email_address);
 $config = new ConfigManager();
-$config->configWrite('is_installed', true);
+$config->configWrite('is_installed', 1);
 $theme->setTheme('Default');
 
 header('refresh:2;url=/');

@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="../../OpenBlog/ThirdPartyLibs/jQuery/jquery-3.6.4.min.js"></script>
-    <script src="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.js"></script>
+    <script src="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.min.js"></script>
     <link rel="stylesheet" href="../../OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.css">
 
     <title>Add a new post</title>

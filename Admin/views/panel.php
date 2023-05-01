@@ -33,18 +33,29 @@ require_once (__DIR__. '/../../OpenBlog/Loader.php');
                 Your Recent Posts
             </div>
             <div class="divide-y divide-slate-400 ">
-                <div class="bg-gray-500 hover:bg-gray-600 cursor-pointer transition duration-200 p-3">
-                    <h1 class="font-bold text-lg text-gray-200 truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, vero.</h1>
-                    <p class="truncate text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda at, ea expedita nulla porro praesentium saepe sint unde vel?</p>
+
+                <?php
+                require_once (__DIR__.'/../../OpenBlog/Blog.php');
+                $posts = new Blog();
+                $blogs = $posts->getNumBlogs(3);
+
+                if($blogs) {
+                    for ($array = 0; $array < count($blogs); $array++) {
+                        $blog_id = $blogs[$array]['blog_id'];
+                        $title = $blogs[$array]['title'];
+                        $sec_title = $blogs[$array]['secondary_title'];
+                        echo("<a href='/ob-administrator/blog/{$blog_id}'>
+<div class='bg-gray-500 hover:bg-gray-600 cursor-pointer transition duration-200 p-3'>
+                    <h1 class='font-bold text-lg text-gray-200 truncate'>{$title}</h1>
+                    <p class='truncate text-gray-300'>{$sec_title}</p>
                 </div>
-                <div class="bg-gray-500 hover:bg-gray-600 cursor-pointer transition duration-200 p-3">
-                    <h1 class="font-bold text-lg text-gray-200 truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, vero.</h1>
-                    <p class="truncate text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda at, ea expedita nulla porro praesentium saepe sint unde vel?</p>
-                </div>
-                <div class="bg-gray-500 hover:bg-gray-600 cursor-pointer transition duration-200 p-3">
-                    <h1 class="font-bold text-lg text-gray-200 truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, vero.</h1>
-                    <p class="truncate text-gray-300">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda at, ea expedita nulla porro praesentium saepe sint unde vel?</p>
-                </div>
+</a>");
+                    }
+                }else {
+                    echo("No Blogs Found");
+                }
+
+                ?>
             </div>
         </div>
         <div class="pt-6">

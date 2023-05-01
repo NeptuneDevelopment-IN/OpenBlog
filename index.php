@@ -14,12 +14,14 @@ $config_ = new ConfigManager();
 $theme = new ThemeManager();
 $router = new Router();
 
-$currentTheme = $config_->getConfig()['selected_theme'];
+if(isset($config_->getConfig()['selected_theme'])) {
+    $currentTheme = $config_->getConfig()['selected_theme'];
+}
 
 $router->get('/', function() {
     global $config_;
     $config_ = $config_->getConfig();
-    if(!file_exists(__DIR__ . '/config.json')) {
+    if(!file_exists(__DIR__ . '/config.php')) {
         exit('Open blog is not installed <a href="/install">Click Here</a> to install it');
     }
     if(!$config_['is_installed']) {
@@ -48,6 +50,10 @@ $router->get('/ob-administrator/settings', function() {
     include 'Admin/views/settings.php';
 });
 
+$router->post('/ob-administrator/settings', function() {
+    include 'Admin/views/settings.php';
+});
+
 $router->post('/ob-administrator/upload-img', function() {
     include 'Admin/views/image-uploader.php';
 });
@@ -70,6 +76,26 @@ $router->get('/ob-administrator', function () {
 
 $router->get('/ob-administrator/new', function () {
     include('Admin/views/new-post.php');
+});
+
+$router->get('/ob-administrator/analytics', function () {
+    include('Admin/views/analytics.php');
+});
+
+$router->get('/ob-administrator/posts', function () {
+    include('Admin/views/posts.php');
+});
+
+$router->get('/ob-administrator/edit/{id}', function ($id) {
+    include('Admin/views/edit.php');
+});
+
+$router->get('/ob-administrator/pages', function () {
+    include('Admin/views/pages.php');
+});
+
+$router->get('/ob-administrator/page/{id}', function ($id) {
+    include('Admin/views/edit-page.php');
 });
 
 $router->post('/ob-administrator/blog-processor', function () {
