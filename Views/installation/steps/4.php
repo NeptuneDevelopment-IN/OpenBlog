@@ -50,7 +50,7 @@ $config = new ConfigManager();
 $config->configWrite('is_installed', 1);
 $theme->setTheme('Default');
 
-header('refresh:2;url=/');
+header('refresh:2;url=/ob-administrator');
 
 ?>
 <style>
