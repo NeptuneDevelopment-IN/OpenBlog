@@ -41,6 +41,14 @@ $router->get('/profile/{id}', function($id) {
     include 'Views/profile.php';
 });
 
+$router->get('/ob-administrator/profile', function() {
+    include 'Admin/views/profile.php';
+});
+
+
+$router->post('/ob-administrator/profile', function() {
+    include 'Admin/views/profile.php';
+});
 
 $router->get('/ob-administrator/themes', function() {
     include 'Admin/views/themes.php';

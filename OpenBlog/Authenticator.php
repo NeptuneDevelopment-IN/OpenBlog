@@ -174,6 +174,15 @@ class Authenticator {
         return false;
     }
 
+    //Update a user's profile info
+    public function updateUser($email, $nickname, $bio) {
+        $sql = "UPDATE user_data SET email_address='{$email}', nickname='{$nickname}', bio='{$bio}'";
+        $res = $this->db->conn->query($sql);
+        if($res) {
+            return true;
+        }
+        return false;
+    }
 
 
 
