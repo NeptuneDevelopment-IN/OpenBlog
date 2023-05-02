@@ -44,7 +44,7 @@ require_once(dirname(__DIR__). '/../../OpenBlog/ThemeManager.php');
 
 $theme = new ThemeManager();
 $auth = new Authenticator();
-$user = $auth->createUser($email_address, $password, $nickname);
+$user = $auth->createUser($email_address, $password, $nickname, '', true);
 $auth->loginUser($email_address);
 $config = new ConfigManager();
 $config->configWrite('is_installed', 1);

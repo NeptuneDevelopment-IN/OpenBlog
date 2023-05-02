@@ -40,19 +40,23 @@ if(in_array($currentTheme, $themeList)) {
 <body>
 <?php
 
+
+echo $contents;
+
 if(isset($_POST['email_address']) && isset($_POST['password'])) {
     $email = $_POST['email_address'];
     $password = $_POST['password'];
     $pw_hash = $auth->passwordHash($email);
     if(password_verify($password, $pw_hash)) {
         $auth->loginUser($email);
-        echo("Login Successful");
-        header('Location: /');
+        echo("<div class='p-12 '><h1 class='text-white rounded-md font-bold text-xl bg-green-500 text-center'>Login Successful</h1></div>");
     } else {
-        echo("Invalid Credentials");
+        echo("<div class='p-12 '><h1 class='text-white rounded-md font-bold text-xl bg-red-500 text-center'>Invalid Credentials</h1></div>");
     }
 }
 
-echo $contents ?>
+
+?>
 </body>
+
 </html>

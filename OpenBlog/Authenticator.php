@@ -84,10 +84,17 @@ class Authenticator {
         return false;
     }
 
-    public function createUser($email, $password, $nickname, $bio = "") {
+    public function createUser($email, $password, $nickname, $bio = "", $is_admin) {
         if($this->userExists($email)) {
             return false;
         }
+
+        $is_admin = intval($is_admin);
+
+        $email = mysqli_real_escape_string($this->db->conn, $email);
+        $nickname = mysqli_real_escape_string($this->db->conn, $nickname);
+        $bio = mysqli_real_escape_string($this->db->conn, $bio);
+
         $unique_id = $this->generateUserID();
         $pass_hash = $this->hashPassword($password);
         $cur_date = time();
@@ -110,11 +117,10 @@ class Authenticator {
                 '{$bio}',
                 '{$cur_date}',
                 '{$cur_date}',
-                'true'
+                '{$is_admin}'
             )
         ";
         $this->db->conn->query($sql);
-        echo($this->db->conn->error);
     }
 
     public function loginUser($email): bool {

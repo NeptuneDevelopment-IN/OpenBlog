@@ -16,6 +16,8 @@ $currentTheme = $config->getConfig()['selected_theme'];
 $blog_info = $blog->getBlog($id);
 $author_details = $auth->getUser($blog_info['author']);
 
+$category_details = $blog->getCategory($blog_info['category']);
+
 if($currentTheme == null) {
     exit('No Theme Selected');
 }
@@ -42,6 +44,9 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ is_admin }}', $author_details['is_admin'], $contents);
     $contents = str_replace('{{ author_join }}', date("l d F Y", $author_details['create_date']), $contents);
     $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
+    $contents = str_replace('{{ category_name }}', $category_details[0]['name'], $contents);
+    $contents = str_replace('{{ category_description }}', $category_details[0]['description'], $contents);
+
 }
 ?>
 

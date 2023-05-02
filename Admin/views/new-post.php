@@ -47,6 +47,22 @@
                 <input required type="text" name="tags" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50 rounded-md" placeholder="Tags">
             </div>
 
+            <select name="category" id="">
+                <?php require_once(__DIR__.'/../../OpenBlog/Blog.php');
+                    $blog = new Blog();
+                    $categories = $blog->getNumCategories(1000);
+                    $count = 0;
+                    if(!empty($categories)) {
+                        $count = count($categories);
+                    }
+
+                    for($i = 0; $i < $count; $i++) {
+                        $name = $categories[$i]['name'];
+                        $id = $categories[$i]['category_id'];
+                        echo("<option value='{$id}'>{$name}</option>");
+                    }
+                ?>
+            </select>
             <div class="p-3 block align-center text-center">
                 <input type="submit" class="bg-yellow-300 hover:bg-yellow-200 p-3 rounded-full cursor-pointer w-[150px]" value="Submit">
             </div>
@@ -58,10 +74,6 @@
                     height: 300,
                 });
             });
-
-
-
-
 
         </script>
         <style>

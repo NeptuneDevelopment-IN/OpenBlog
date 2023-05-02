@@ -56,7 +56,7 @@ if(isset($_POST['database_name'])) {
     $config->configWrite('database_host', $db_host);
     require(dirname(__DIR__). '/../../OpenBlog/Database.php');
     $db = new Database();
-    $create_db = $db->tableInit('blog_data', 'user_data');
+    $create_db = $db->tableInit('blog_data', 'user_data', 'blog_categories');
     if(!$create_db) {
         exit('Table already exists please delete the existing tables and try again');
     }

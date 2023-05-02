@@ -1,5 +1,5 @@
 <?php
-if(!$_SESSION['is_admin'] && !$_SESSION['is_logged_in']) {
+if(!$_SESSION['is_admin']) {
     exit('Access Denied');
 }
 require_once (__DIR__. '/../../OpenBlog/Loader.php');

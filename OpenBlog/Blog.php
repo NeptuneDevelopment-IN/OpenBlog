@@ -1,19 +1,22 @@
 <?php 
 require_once('Database.php');
 
-class Blog {
+class Blog
+{
     protected $db;
-    
+
     //Connect to the database
-    public function __construct() {
+    public function __construct()
+    {
         // Make a connection to the database server.
         $this->db = new Database();
     }
-    
+
     // Get the blog by filtering it through the database and returning the data as an array.
-    public function getBlog($id) {
+    public function getBlog($id)
+    {
         $data = $this->db->conn->query("SELECT * FROM blog_data WHERE blog_id ='{$id}'");
-        if(mysqli_num_rows($data) > 0) {
+        if (mysqli_num_rows($data) > 0) {
             $row = mysqli_fetch_array($data);
             $blog = array(
                 'title' => $row['title'],
@@ -25,6 +28,7 @@ class Blog {
                 'likes' => $row['likes'],
                 'dislikes' => $row['dislikes'],
                 'tags' => $row['tags'],
+                'category' => $row['category']
             );
             return $blog;
         }
@@ -32,10 +36,41 @@ class Blog {
     }
 
     //Function to get latest 'n' number the blogs from the server as an array
-    public function getNumBlogs($limit = 10) {
-        $sql = "SELECT * FROM blog_data LIMIT {$limit} ";
+    public function getNumBlogs($limit = 10)
+    {
+        $sql = "SELECT * FROM blog_data LIMIT {$limit}";
         $res = $this->db->conn->query($sql);
-        if(mysqli_num_rows($res) > 0) {
+        if (mysqli_num_rows($res) > 0) {
+            $data = array();
+            while ($row = mysqli_fetch_array($res)) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+
+    }
+
+    public function getNumCategories($limit = 10)
+    {
+        $sql = "SELECT * FROM blog_categories LIMIT {$limit}";
+        $res = $this->db->conn->query($sql);
+        if (mysqli_num_rows($res) > 0) {
+            $data = array();
+            while ($row = mysqli_fetch_array($res)) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+
+    }
+
+
+    public function getCategory($category_id) {
+        $sql = "SELECT * FROM blog_categories WHERE category_id={$category_id}";
+        $res = $this->db->conn->query($sql);
+        if (mysqli_num_rows($res) > 0) {
             $data = array();
             while ($row = mysqli_fetch_array($res)) {
                 $data[] = $row;
@@ -75,12 +110,12 @@ class Blog {
         return false;
     }
 
-    public function addBlog($title, $secondary_title, $content, $author, $tags) {
+    public function addBlog($title, $secondary_title, $content, $author, $tags, $category_id) {
         $content = mysqli_real_escape_string($this->db->conn, $content);
         $date_created = time();
         $blog_id = $this->generateBlogID();
-        $sql = "INSERT INTO blog_data ( title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags)
-        VALUES ('{$title}', '{$secondary_title}', '{$content}', '{$author}', '{$blog_id}', '${date_created}', '0', '0', '{$tags}') ";
+        $sql = "INSERT INTO blog_data ( title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags, category)
+        VALUES ('{$title}', '{$secondary_title}', '{$content}', '{$author}', '{$blog_id}', '${date_created}', '0', '0', '{$tags}', '{$category_id}') ";
         $query = $this->db->conn->query($sql);
         if($query) {
             echo("<h1 class='text-3xl text-center'> Blog Added Successfully! <br> <a href='/blog/{$blog_id}'>Blog Link</a></h1>");

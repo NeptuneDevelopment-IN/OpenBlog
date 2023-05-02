@@ -50,6 +50,15 @@ $router->post('/ob-administrator/profile', function() {
     include 'Admin/views/profile.php';
 });
 
+$router->get('/profile', function() {
+    include 'Views/profile-editor.php';
+});
+
+
+$router->post('/profile', function() {
+    include 'Views/profile-editor.php';
+});
+
 $router->get('/ob-administrator/themes', function() {
     include 'Admin/views/themes.php';
 });
@@ -142,6 +151,14 @@ $router->post('/install/4', function() {
 
 $router->get('/login', function() {
     include('Views/auth/login.php');
+});
+
+$router->get('/signup', function() {
+    include('Views/auth/signup.php');
+});
+
+$router->post('/signup', function() {
+    include('Views/auth/signup.php');
 });
 
 $router->get('/logout', function() {
