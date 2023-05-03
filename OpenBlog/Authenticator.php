@@ -8,6 +8,7 @@ class Authenticator {
     }
 
     public function userExists($email_address): bool {
+        $email_address = mysqli_real_escape_string($this->db->conn, $email_address);
         $sql = "SELECT email_address FROM user_data WHERE email_address='{$email_address}'";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) > 0) {
@@ -21,7 +22,9 @@ class Authenticator {
     }
 
     public function verifyEmailPassword($email, $password): bool {
-        $sql = "SELECT email_address, password_hash FROM user_data WHERE email_address={$email}";
+        $email = mysqli_real_escape_string($this->db->conn, $email);
+        $password = mysqli_real_escape_string($this->db->conn, $password);
+        $sql = "SELECT email_address, password_hash FROM user_data WHERE email_address='{$email}'";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) == 0) {
             return false;
@@ -34,8 +37,11 @@ class Authenticator {
         return false;
     }
 
-    public function changePassword($email, $old_password, $new_password) {
-        $sql = "SELECT email_address, password_hash FROM user_data WHERE email_address={$email}";
+    public function changePassword($email, $old_password, $new_password): bool {
+        $email = mysqli_real_escape_string($this->db->conn, $email);
+        $old_password = mysqli_real_escape_string($this->db->conn, $old_password);
+        $new_password = mysqli_real_escape_string($this->db->conn, $new_password);
+        $sql = "SELECT email_address, password_hash FROM user_data WHERE email_address='{$email}'";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) == 0) {
             return false;
@@ -45,8 +51,9 @@ class Authenticator {
         if(!password_verify($old_password, $password_hash)) {
             return false;
         }
-        $new_pass_hash = $password_hash($new_password, PASSWORD_BCRYPT);
-        $sql_2 = "UPDATE user_data SET password_hash={$new_pass_hash} WHERE email_address={$email}";
+        $new_pass_hash = password_hash($new_password, PASSWORD_BCRYPT);
+        $new_pass_hash = mysqli_real_escape_string($this->db->conn, $new_pass_hash);
+        $sql_2 = "UPDATE user_data SET password_hash='{$new_pass_hash}' WHERE email_address='{$email}'";
         $this->db->conn->query($sql_2);
         if(!mysqli_error($this->db->conn)) {
             return true;
@@ -124,6 +131,7 @@ class Authenticator {
     }
 
     public function loginUser($email): bool {
+        $email = mysqli_real_escape_string($this->db->conn, $email);
         $sql = "SELECT * FROM user_data WHERE email_address='${email}'";
         $res = $this->db->conn->query($sql);
         if(mysqli_num_rows($res) == 0) {
@@ -141,7 +149,12 @@ class Authenticator {
         $_SESSION['create_date'] = $res['create_date'];
         $_SESSION['last_login'] = $res['last_login'];
         $_SESSION['email_address'] = $res['email_address'];
-        echo(mysqli_error($this->db->conn));
+        $now = time();
+        $sql_2 = "UPDATE user_data last_login='{$now}' WHERE email_address='{$email}'";
+        $res_2 = $this->db->conn->query($sql_2);
+        if(!$res_2) {
+            return false;
+        }
         return true;
     }
 
@@ -182,6 +195,9 @@ class Authenticator {
 
     //Update a user's profile info
     public function updateUser($email, $nickname, $bio) {
+        $email = mysqli_real_escape_string($this->db->conn, $email);
+        $nickname = mysqli_real_escape_string($this->db->conn, $nickname);
+        $bio = mysqli_real_escape_string($this->db->conn, $bio);
         $sql = "UPDATE user_data SET email_address='{$email}', nickname='{$nickname}', bio='{$bio}'";
         $res = $this->db->conn->query($sql);
         if($res) {

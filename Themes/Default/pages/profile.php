@@ -15,9 +15,6 @@ include(__DIR__.'/../components/navbar.php');
         <ul class="list-disc list-inside">
             <li><b>Date Joined:</b> {{ join_date }}</li>
             <li><b>Last Online:</b> {{ last_online }}</li>
-            <li><b>Administrator:</b> {{ is_admin }}</li>
-            <li><b>Interests:</b> {{ interests }}</li>
-            <li><b>Occupation:</b> {{ occupation }}</li>
         </ul>
     </div>
 </main>
