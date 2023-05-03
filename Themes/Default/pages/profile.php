@@ -18,4 +18,5 @@ include(__DIR__.'/../components/navbar.php');
         </ul>
     </div>
 </main>
+<?php include(__DIR__.'/../components/footer.php') ?>
 
