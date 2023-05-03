@@ -1,3 +1,5 @@
+
+<script src="/OpenBlog/ThirdPartyLibs/jQuery/jquery-3.6.4.min.js"></script>
 <?php
 if(!$_SESSION['is_logged_in']) {
     header('Location: /login');
@@ -46,7 +48,26 @@ if(in_array($currentTheme, $themeList)) {
 }
 
 ?>
+<script>
+    function showAlert(title, message) {
+        // Set the modal title and message
+        $('#alert-title').text(title);
+        $('#alert-message').text(message);
 
+        // Show the modal
+        $('#alert-modal').removeClass('hidden');
+    }
+
+    // Hide the alert modal
+    function hideAlert() {
+        $('#alert-modal').addClass('hidden');
+    }
+
+    // When the "Okay" button is clicked, hide the modal
+    $('#alert-okay-btn').click(function() {
+        hideAlert();
+    });
+</script>
 <?php
 
 echo $contents;
@@ -58,7 +79,15 @@ if(isset($_POST['change_information'])) {
     $email_address = $_POST['email_address'];
     $nickname = $_POST['nickname'];
     $bio = $_POST['bio'];
-    $auth->updateUser($email_address, $nickname, $bio);
+    $update = $auth->updateUser($email_address, $nickname, $bio);
+    if($update) {
+        echo("<div class='px-6'><div class='font-regular px-6 relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100'>
+   Changes Saved Successfully
+</div></div>");
+    } else {
+
+    }
+
     $_SESSION['email_address'] = $email_address;
     $_SESSION['nickname'] = $nickname;
     $_SESSION['bio'] = $bio;
@@ -72,12 +101,12 @@ if(isset($_POST['change_information'])) {
     }
     $pass_change = $auth->changePassword($email, $old_password, $new_password);
     if(!$pass_change) {
-        exit('Could not change the password. Make sure the current passwords are correct');
+       exit('Please check your old password or both the passwords in the new password field');
     }
-    echo("<div class='px-6'><div class='font-regular px-6 relative mb-4 block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100'>
-  Password Changed Successfully
-</div></div>");
+
 }
 
 
 ?>
+
+

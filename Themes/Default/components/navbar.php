@@ -34,7 +34,7 @@ $website_description = $config->getConfig()['website_name'];
                 if($auth->isLoggedIn()) {
                     $user_id = $_SESSION['user_id'];
                     $nickname = $_SESSION['nickname'];
-                    echo ("<a href='/profile/{$user_id}' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>{$nickname}</a>");
+                    echo ("<a href='/profile' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>{$nickname}</a>");
                 } else {
                     echo("<a href='/login' class='py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300'>Log In</a>
                 <a href='/signup' class='py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300'>Sign Up</a>");
