@@ -31,6 +31,12 @@ if(in_array($currentTheme, $themeList)) {
     ob_start();
     // Include the PHP file containing the HTML template
     include(__DIR__. "/../Themes/{$currentTheme}/pages/blog.php");
+    if($author_details['is_admin']) {
+        $is_admin = 'Yes';
+    } else {
+        $is_admin = 'No';
+    }
+
     // Get the contents of the output buffer and clean (erase) it
     $contents = ob_get_clean();
     $contents = str_replace('{{ blog_id }}', $id, $contents);
@@ -41,7 +47,7 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ author_id }}', $blog_info['author'], $contents);
     $contents = str_replace('{{ author_name }}', $author_details['nickname'], $contents);
     $contents = str_replace('{{ author_bio }}', $author_details['bio'], $contents);
-    $contents = str_replace('{{ is_admin }}', $author_details['is_admin'], $contents);
+    $contents = str_replace('{{ is_admin }}', $is_admin , $contents);
     $contents = str_replace('{{ author_join }}', date("l d F Y", $author_details['create_date']), $contents);
     $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
     $contents = str_replace('{{ category_name }}', $category_details[0]['name'], $contents);

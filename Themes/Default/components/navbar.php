@@ -24,6 +24,7 @@ $website_description = $config->getConfig()['website_name'];
                     <a href="/" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
                     <a href="/authors" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Authors</a>
                     <a href="/contact" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</a>
+
                 </div>
             </div>
             <!-- Secondary Navbar items -->

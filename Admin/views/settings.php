@@ -1,3 +1,6 @@
+<?php
+require_once (__DIR__.'/../utils/loader.php');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +12,6 @@
 </head>
 <body class="bg-[#1C2033] flex flex-wrap">
     <?php
-    require_once (__DIR__. '/../../OpenBlog/Loader.php');
     include(__DIR__. '/../components/sidebar.php');
     require_once(__DIR__.'/../../OpenBlog/ConfigManager.php');
     $config = new ConfigManager();

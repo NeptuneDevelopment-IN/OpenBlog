@@ -16,6 +16,16 @@ require_once (__DIR__. '/../../OpenBlog/Loader.php');
     <?php include(__DIR__ . '/../components/sidebar.php'); ?>
     <div class="flex-col flex-1 p-6">
         <h1 class="text-white font-bold text-3xl">Blog Posts</h1>
+        <form action="/ob-administrator/posts" method="get">
+            <div class="relative flex items-center mt-3">
+                <input type="text" placeholder="Search" name="search" class="border border-gray-300 py-2 pr-10 pl-4 rounded-full w-full focus:outline-none focus:border-blue-500 transition-colors duration-300 ease-in-out">
+                <button type="submit" class="absolute top-0 right-0 h-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
         <div class="py-4">
             <h1 class="text-white font-bold text-2xl bg-[#338AFF] p-3 rounded-md">Add, edit, or delete blogs on the website</h1>
         </div>
@@ -35,7 +45,13 @@ require_once (__DIR__. '/../../OpenBlog/Loader.php');
         $current_page = $_GET['page'] ?? 1;
         $total_pages = ceil($total_records / $records_per_page);
         $offset = ($current_page - 1) * $records_per_page;
-        $sql = "SELECT * FROM blog_data LIMIT {$offset}, {$records_per_page}";
+        if(isset($_GET['search'])) {
+            $s_query = $_GET['search'];
+
+            $sql = "SELECT * FROM blog_data WHERE title LIKE '%{$s_query}%'";
+        } else {
+            $sql = "SELECT * FROM blog_data LIMIT {$offset}, {$records_per_page}";
+        }
         $res = $db->conn->query($sql);
         $data = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
@@ -78,7 +94,7 @@ require_once (__DIR__. '/../../OpenBlog/Loader.php');
                             <h1 class="text-gray-200 font-bold text-xl"><?php echo($post['title']) ?></h1>
                             <p class="text-gray-300"><?php echo($post['secondary_title']) ?></p>
                         </div>
-                        <a href="/ob-administrator/posts/<?php echo($post['blog_id']) ?>">
+                        <a href="/ob-administrator/edit/<?php echo($post['blog_id']) ?>">
                             <button class="flex bg-[#5675C8] p-3 hover:bg-[#5675C8]/90 rounded-md">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />

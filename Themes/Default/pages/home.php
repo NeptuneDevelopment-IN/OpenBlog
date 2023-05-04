@@ -15,6 +15,48 @@
     include (__DIR__ . '/../components/navbar.php');
     ?>
     <div class="container mx-auto px-6">
+        <?php
+        if(isset($_GET['search'])) {
+            $query = '%'.$_GET['search'].'%';
+            require_once (__DIR__.'/../../../OpenBlog/Database.php');
+            $sql = "SELECT * FROM blog_data WHERE title LIKE ?";
+            $db = new Database();
+            $stmt = $db->conn->prepare($sql);
+            $stmt->bind_param('s', $query);
+            $stmt->execute();
+            $blog_data = mysqli_fetch_all($stmt->get_result());
+
+        ?>
+        <h1 class="text-3xl md:text-5xl font-bold font-inter text-gray-800 py-6">Your Search Results</h1>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+            <div class="col-span-2">
+                <?php
+                if ($blog_data) {
+
+                    for ($i=0; $i<count($blog_data); $i++) {
+                        $blog_id = $blog_data[$i][1];
+                        $title = $blog_data[$i][2];
+                        $sec_title = $blog_data[$i][3];
+                        $date = $blog_data[$i][6];
+
+                        ?>
+                        <a href="/blog/<?= $blog_id ?>">
+                            <div class="bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6">
+                                <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight"><?= $title ?></h2>
+                                <p class="text-base md:text-lg text-gray-600 mb-4"><?= $sec_title ?></p>
+                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><?= date("l d F Y", $date) ?></span>
+                            </div>
+                        </a>
+                        <?php
+                    }
+                } else {
+                    echo("No Blogs Found");
+                }
+                ?>
+            </div>
+        </div>
+
+        <?php }?>
         <h1 class="text-3xl md:text-5xl font-bold font-inter text-gray-800 py-6">Latest Blogs</h1>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
             <div class="col-span-2">
@@ -48,6 +90,11 @@
                 ?>
             </div>
             <div>
+                <div class="bg-white rounded-lg shadow-md">
+                    <form action="/" method="get" class="p-3">
+                        <input type="search" name="search" class="block w-full bg-gray-200 text-gray-700  rounded-md px-4 py-2" placeholder="Search Blogs">
+                    </form>
+                </div>
                 <div class="pb-3 shadow-lg">
                     <h2 class="text-2xl font-inter text-gray-800 bg-green-400 py-2 px-4 rounded-lg">About Us</h2>
                     <p class="p-3 bg-white shadow rounded-lg text-gray-700 leading-relaxed"><?= $website_description ?></p>

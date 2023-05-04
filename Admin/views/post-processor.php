@@ -4,7 +4,8 @@
 
 <div id="quill-editor" class="ql-editor" style="font-family: Arial; text-align: left;">
 <?php
-require_once (__DIR__. '/../../OpenBlog/Loader.php');
+require_once (__DIR__.'/../utils/loader.php');
+
 
 
 require_once (__DIR__ . '/../../OpenBlog/Blog.php');

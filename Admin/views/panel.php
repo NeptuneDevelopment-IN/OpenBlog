@@ -1,9 +1,5 @@
 <?php
-if(!$_SESSION['is_admin']) {
-    exit('Access Denied');
-}
-require_once (__DIR__. '/../../OpenBlog/Loader.php');
-
+require_once (__DIR__.'/../utils/loader.php');
 
 ?>
 <!doctype html>

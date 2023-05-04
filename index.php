@@ -9,7 +9,6 @@ require_once 'OpenBlog/ConfigManager.php';
 require_once 'OpenBlog/ThemeManager.php';
 require_once 'OpenBlog/Authenticator.php';
 
-
 $config_ = new ConfigManager();
 $theme = new ThemeManager();
 $router = new Router();
@@ -105,6 +104,10 @@ $router->get('/ob-administrator/posts', function () {
 
 $router->get('/ob-administrator/edit/{id}', function ($id) {
     include('Admin/views/edit.php');
+});
+
+$router->post('/ob-administrator/edit', function () {
+    include('Admin/views/edit-processor.php');
 });
 
 $router->get('/ob-administrator/pages', function () {

@@ -1,5 +1,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <?php
+require_once (__DIR__.'/../utils/loader.php');
+
 include(__DIR__.'/../components/sidebar.php');
 ?>
 <!doctype html>

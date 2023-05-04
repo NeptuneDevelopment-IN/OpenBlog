@@ -1,6 +1,6 @@
 
 <?php
-require_once (__DIR__. '/../../OpenBlog/Loader.php');
+require_once (__DIR__.'/../utils/loader.php');
 
 include(__DIR__. '/../../Admin/components/sidebar.php');
 ?>

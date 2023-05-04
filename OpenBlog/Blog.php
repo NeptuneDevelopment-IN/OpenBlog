@@ -124,5 +124,15 @@ class Blog
 
 
     }
+    public function updateBlog($id, $title, $sec_title, $tags, $category, $content) {
+        $content = mysqli_real_escape_string($this->db->conn, $content);
+        $sql = "UPDATE blog_data SET title='{$title}', secondary_title='{$sec_title}', tags='{$tags}', category={$category}, content='{$content}' WHERE blog_id='{$id}'";
+        $stmt = $this->db->conn->query($sql);
+        if($stmt) {
+            return true;
+        }
+        return false;
+
+    }
 
 }
