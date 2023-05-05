@@ -16,12 +16,14 @@
             </div>
         </div>
 
-        <div class="bg-gray-100 rounded-lg p-4 shadow-lg">
-            <h3 class="font-bold text-lg bg-green-400 py-2 px-4 rounded-md mb-4">About The Author</h3>
-            <h3 class="font-bold">{{ author_name }}</h3>
-            <p class="text-gray-800 text-sm"><b>Date Joined</b>: {{ author_join }}</p>
-            <p class="text-gray-800 text-sm"><b>Administrator</b>: {{ is_admin }}</p>
-            <p class="py-3">{{ author_bio }}</p>
+        <div>
+            <div class="bg-gray-100 rounded-lg p-4 shadow-lg">
+                <h3 class="font-bold text-lg bg-green-400 py-2 px-4 rounded-md mb-4">About The Author</h3>
+                <h3 class="font-bold">{{ author_name }}</h3>
+                <p class="text-gray-800 text-sm"><b>Date Joined</b>: {{ author_join }}</p>
+                <p class="text-gray-800 text-sm"><b>Administrator</b>: {{ is_admin }}</p>
+                <p class="py-3">{{ author_bio }}</p>
+            </div>
         </div>
     </article>
     <style>

@@ -28,7 +28,7 @@
 
         ?>
         <h1 class="text-3xl md:text-5xl font-bold font-inter text-gray-800 py-6">Your Search Results</h1>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+        <div class="grid grid-cols-1 gap-3 text-white md:grid-cols-3">
             <div class="col-span-2">
                 <?php
                 if ($blog_data) {
@@ -37,17 +37,16 @@
                         $blog_id = $blog_data[$i][1];
                         $title = $blog_data[$i][2];
                         $sec_title = $blog_data[$i][3];
-                        $date = $blog_data[$i][6];
-
-                        ?>
-                        <a href="/blog/<?= $blog_id ?>">
-                            <div class="bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6">
-                                <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight"><?= $title ?></h2>
-                                <p class="text-base md:text-lg text-gray-600 mb-4"><?= $sec_title ?></p>
-                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><?= date("l d F Y", $date) ?></span>
-                            </div>
-                        </a>
-                        <?php
+                        $date = date("l d F Y", $blog_data[$i][6]);
+                        echo("
+                        <a href='/blog/{$blog_id}'>
+                                <div class='bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6'>
+                                    <h2 class='text-xl md:text-2xl font-bold text-gray-800 leading-tight'>{$title}</h2>
+                                    <p class='text-base md:text-lg text-gray-600 mb-4'>{$sec_title}</p>
+                                    <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700'>{$date}</span>
+                                </div>
+                            </a>
+                            ");
                     }
                 } else {
                     echo("No Blogs Found");
@@ -58,7 +57,7 @@
 
         <?php }?>
         <h1 class="text-3xl md:text-5xl font-bold font-inter text-gray-800 py-6">Latest Blogs</h1>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="col-span-2">
                 <?php
                 $config = new ConfigManager();
@@ -75,13 +74,15 @@
                         $date = $item['date_created']
 
                         ?>
-                        <a href="/blog/<?= $blog_id ?>">
-                            <div class="bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6">
-                                <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight"><?= $title ?></h2>
-                                <p class="text-base md:text-lg text-gray-600 mb-4"><?= $sec_title ?></p>
-                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><?= date("l d F Y", $date) ?></span>
-                            </div>
-                        </a>
+                        <div class="pb-3">
+                            <a href="/blog/<?= $blog_id ?>" >
+                                <div class="bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6">
+                                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight"><?= $title ?></h2>
+                                    <p class="text-base md:text-lg text-gray-600 mb-4"><?= $sec_title ?></p>
+                                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"><?= date("l d F Y", $date) ?></span>
+                                </div>
+                            </a>
+                        </div>
                         <?php
                     }
                 } else {
@@ -89,8 +90,8 @@
                 }
                 ?>
             </div>
-            <div>
-                <div class="bg-white rounded-lg shadow-md">
+            <div class="md:ml-6">
+                <div class="bg-white rounded-lg shadow-md ">
                     <form action="/" method="get" class="p-3">
                         <input type="search" name="search" class="block w-full bg-gray-200 text-gray-700  rounded-md px-4 py-2" placeholder="Search Blogs">
                     </form>

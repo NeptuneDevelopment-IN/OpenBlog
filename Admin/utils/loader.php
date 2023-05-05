@@ -13,3 +13,5 @@ if (!defined('REQUEST_FROM_INDEX') || REQUEST_FROM_INDEX !== true) {
 </div>";
     exit();
 }
+
+echo('<script src="https://cdn.tailwindcss.com"></script>');

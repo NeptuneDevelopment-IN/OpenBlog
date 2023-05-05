@@ -29,7 +29,6 @@ require_once (__DIR__.'/../utils/loader.php');
                 Your Recent Posts
             </div>
             <div class="divide-y divide-slate-400 ">
-
                 <?php
                 require_once (__DIR__.'/../../OpenBlog/Blog.php');
                 $posts = new Blog();
@@ -40,12 +39,13 @@ require_once (__DIR__.'/../utils/loader.php');
                         $blog_id = $blogs[$array]['blog_id'];
                         $title = $blogs[$array]['title'];
                         $sec_title = $blogs[$array]['secondary_title'];
-                        echo("<a href='/ob-administrator/blog/{$blog_id}'>
+                        echo("
+<div class='divide-y divide-dashed'><a href='/ob-administrator/edit/{$blog_id}' >
 <div class='bg-gray-500 hover:bg-gray-600 cursor-pointer transition duration-200 p-3'>
                     <h1 class='font-bold text-lg text-gray-200 truncate'>{$title}</h1>
                     <p class='truncate text-gray-300'>{$sec_title}</p>
                 </div>
-</a>");
+</a></div>");
                     }
                 }else {
                     echo("No Blogs Found");

@@ -135,4 +135,28 @@ class Blog
 
     }
 
+    public function getBlogByCategory($cat_id) {
+        $sql = "SELECT * FROM blog_data WHERE category=?";
+        $stmt = $this->db->conn->prepare($sql);
+        $stmt->bind_param("i", $cat_id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $blog_data = mysqli_fetch_all($res, MYSQLI_ASSOC);
+
+        $sql_2 = "SELECT * FROM blog_categories WHERE category_id=?";
+        $stmt_2 = $this->db->conn->prepare($sql_2);
+        $stmt_2->bind_param("i", $cat_id);
+        $stmt_2->execute();
+        $res_2 = mysqli_fetch_assoc($stmt_2->get_result());
+
+        $ret_data = array(
+            'category' => $res_2,
+            'blogs' => $blog_data,
+        );
+        return $ret_data;
+    }
+
+
+
+
 }

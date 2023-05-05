@@ -156,6 +156,10 @@ $router->get('/login', function() {
     include('Views/auth/login.php');
 });
 
+$router->get('/category/{id}', function($id) {
+    include('Views/category.php');
+});
+
 $router->get('/signup', function() {
     include('Views/auth/signup.php');
 });
