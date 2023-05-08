@@ -42,6 +42,7 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ blog_id }}', $id, $contents);
     $contents = str_replace('{{ blog_title }}', $blog_info['title'], $contents);
     $contents = str_replace('{{ date_created }}', date("l d F Y", $blog_info['date_created']), $contents);
+    $contents = str_replace('{{ date_created_2 }}', date("Y-m-d\TH:i:s\Z", $blog_info['date_created']), $contents);
     $contents = str_replace('{{ secondary_title }}', $blog_info['secondary_title'], $contents);
     $contents = str_replace('{{ content }}', $blog_info['content'], $contents);
     $contents = str_replace('{{ author_id }}', $blog_info['author'], $contents);
@@ -52,28 +53,15 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
     $contents = str_replace('{{ category_name }}', $category_details[0]['name'], $contents);
     $contents = str_replace('{{ category_description }}', $category_details[0]['description'], $contents);
+    $contents = str_replace('{{ website_name }}', $config->getConfig('website_name'), $contents);
+    $contents = str_replace('{{ website_description }}', $config->getConfig('website_description'), $contents);
 
 }
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog post about <?php echo $blog_info['title']; ?>">
-    <meta name="keywords" content="<?php echo implode(',', $blog_info['tags']); ?>">
-    <meta name="author" content="<?php echo $author_details['nickname']; ?>">
-    <title><?php echo $blog_info['title']; ?></title>
-    <link rel="stylesheet" href="../../OpenBlog/OpenBlog/ThirdPartyLibs/Summernote/summernote-lite.css">
 
-</head>
-<body>
-<div id="my-div">
     <?php
-    include(__DIR__. "/../Themes/{$currentTheme}/components/navbar.php");
     echo $contents; ?>
-</div>
 <style>
     h1 {
         font-size: 2.5rem;

@@ -12,10 +12,11 @@
     <title>Edit Post</title>
 </head>
 <body class="bg-[#1C2033] flex flex-wrap">
-    <?php include(__DIR__. '/../components/sidebar.php') ?>
-
     <?php
     require_once (__DIR__.'/../utils/loader.php');
+    include(__DIR__. '/../components/sidebar.php') ?>
+
+    <?php
     require_once(__DIR__.'/../../OpenBlog/Blog.php');
     $blog = new Blog();
     $blog_data = $blog->getBlog($id);

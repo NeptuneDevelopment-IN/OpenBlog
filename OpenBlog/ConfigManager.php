@@ -4,11 +4,14 @@ class ConfigManager
     private $configFile;
 
     public function __construct()
+
     {
+        $file_auth_token = $this->generate_auth_token();
         $this->configFile = 'config.php';
         if(!file_exists($this->configFile)) {
             $this->config = array(
                 'is_installed' => false,
+                'file_upload_auth_token' => $file_auth_token,
                 'selected_theme' => '',
                 'debug_mode' => false,
                 'website_name' => 'Open Blog',
@@ -44,6 +47,15 @@ class ConfigManager
     }
 
 
+    public function generate_auth_token(): string
+    {
+        $id = "";
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for ($i = 0; $i < 32; $i++) {
+            $id .= $characters[mt_rand(0, strlen($characters) - 1)];
+        }
+        return $id;
+    }
 
 
     public function getConfig($key = null)

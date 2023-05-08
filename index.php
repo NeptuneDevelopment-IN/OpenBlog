@@ -122,6 +122,14 @@ $router->post('/ob-administrator/blog-processor', function () {
     include('Admin/views/post-processor.php');
 });
 
+$router->get('/ob-administrator/assets', function() {
+    include('Admin/views/assets.php');
+});
+
+$router->post('/ob-administrator/assets', function() {
+    include('Admin/views/asset-upload.php');
+});
+
 $router->get('/install/4', function() {
     header('Location: /install');
 });
