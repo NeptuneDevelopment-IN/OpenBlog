@@ -16,7 +16,9 @@ $content = $_POST['content'];
 $author = $_SESSION['user_id'];
 $tags = $_POST['tags'];
 $category_id = $_POST['category'];
-$blog->addBlog($title, $secondary_title, $content, $author, $tags, $category_id);
+$description = $_POST['blog_description'];
+$banner = $_POST['blog_cover_image'];
+$blog->addBlog($title, $secondary_title, $content, $author, $tags, $category_id, $description, $banner);
 
 
 ?>

@@ -5,6 +5,13 @@ class Router
     private $routes = array();
     private $basePath = '';
 
+    public function __construct()
+    {
+        require_once (__DIR__.'/ConfigManager.php');
+        $config = new ConfigManager();
+        $currentTheme = $config->getConfig('selected_theme');
+    }
+
     public function setBasePath($basePath)
     {
         $this->basePath = rtrim($basePath, '/');
@@ -39,14 +46,24 @@ class Router
 
         if (strpos($requestUrl, ".php") !== false) {
             http_response_code(404);
-            echo '404 Not Found';
+            global $currentTheme;
+            if($currentTheme == null) {
+                echo ('404 Not Found');
+            } else {
+                include(__DIR__."/../Themes/{$currentTheme}/errors/404.php");
+            }
+
             return;
         }
 
         if (strpos($requestUrl, ".json") !== false) {
             http_response_code(404);
-            echo '404 Not Found';
-            return;
+            global $currentTheme;
+            if($currentTheme == null) {
+                echo ('404 Not Found');
+            } else {
+                include(__DIR__."/../Themes/{$currentTheme}/errors/404.php");
+            }            return;
         }
 
         // Remove query string from URL
@@ -82,7 +99,12 @@ class Router
         // Show 404 error if no route is matched
         if ($requestMethod === 'GET') {
             http_response_code(404);
-            echo('Page not found');
+            global $currentTheme;
+            if($currentTheme == null) {
+                echo ('404 Not Found');
+            } else {
+                include(__DIR__."/../Themes/{$currentTheme}/errors/404.php");
+            }
         }
     }
     

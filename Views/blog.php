@@ -53,6 +53,8 @@ if(in_array($currentTheme, $themeList)) {
     $contents = str_replace('{{ tags }}', $blog_info['tags'], $contents);
     $contents = str_replace('{{ category_name }}', $category_details[0]['name'], $contents);
     $contents = str_replace('{{ category_description }}', $category_details[0]['description'], $contents);
+    $contents = str_replace('{{ cover_image }}', $blog_info['banner_url'], $contents);
+    $contents = str_replace('{{ blog_description }}', $blog_info['description'], $contents);
     $contents = str_replace('{{ website_name }}', $config->getConfig('website_name'), $contents);
     $contents = str_replace('{{ website_description }}', $config->getConfig('website_description'), $contents);
 
@@ -60,11 +62,14 @@ if(in_array($currentTheme, $themeList)) {
 ?>
 
 
+
     <?php
     echo $contents; ?>
 <style>
     h1 {
         font-size: 2.5rem;
+        color: #374151;
+        font-weight: 700;
     }
 
     h2 {
@@ -89,5 +94,17 @@ if(in_array($currentTheme, $themeList)) {
 
 
 </style>
-</body>
-</html>
+<script>
+    function replaceSpacesWithDashes(str) {
+        // Use regex to replace all spaces with dashes
+        const modifiedStr = str.replace(/\s+/g, '-');
+        // Remove any dashes at the end of the string
+        const trimmedStr = modifiedStr.replace(/-+$/, '');
+        return trimmedStr.toLowerCase();
+    }
+
+    replaced = replaceSpacesWithDashes("<?php echo $blog_info['title'] ?>");
+
+    history.pushState(null, null, `/blog/<?php echo $blog_info['blog_id'] ?>?${replaced}`)
+</script>
+

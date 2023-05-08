@@ -8,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ blog_title }}</title>
 
-    <meta name="description" content="" />
+    <meta name="description" content="{{ blog_description }}" />
     <meta name="keywords" content="{{ tags }}" />
     <meta name="author" content="{{ author_name }}" />
     <meta name="application-name" content="Open Blog" />
 
     <meta property="og:title" content="{{ blog_title }}" />
-    <meta property="og:description" content="The Rock" />
+    <meta property="og:description" content="{{ blog_description }}" />
     <meta property="og:type" content="article" />
     <meta property="article:author" content="//<?php echo($_SERVER['HTTP_HOST']) ?>/profile/{{ author_id }}">
 
@@ -45,9 +45,9 @@
     </script>
 
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:title" content="{{ blog_title }}" />
+    <meta name="twitter:description" content="{{ blog_description }}" />
+    <meta name="twitter:image" content="{{ cover_image }}" />
 
 </head>
 
@@ -67,10 +67,13 @@
                     <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{{ category_name }}</span>
 
                 </div>
+
             </div>
+            <img src="{{ cover_image }}" class="w-full h-[300px] overflow-scroll shadow-lg rounded-lg" alt="{{ secondary_title }}">
             <div class="pt-6 px-3 border-2 border-gray-300 shadow-lg">
                 {{ content }}
             </div>
+
         </div>
 
         <div>
@@ -83,10 +86,12 @@
             </div>
         </div>
     </article>
+
     <style>
         body {
             background-color: #E1E2E5;
         }
     </style>
+    <?php include(__DIR__.'/../components/footer.php') ?>
 </body>
 </html>

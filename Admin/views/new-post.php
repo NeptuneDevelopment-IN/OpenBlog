@@ -28,8 +28,12 @@ require_once (__DIR__.'/../utils/loader.php');
     $backgroundColor = $themeInfo['background_color'];
 
     ?>
+
     <div class="flex-col flex-1 p-6">
-        <form action="/ob-administrator/blog-processor" method="POST" >
+        <div class="py-4">
+            <h1 class="text-white font-bold text-2xl bg-[#338AFF] p-3 rounded-md">Add a new blog!</h1>
+        </div>
+        <form action="/ob-administrator/blog-processor" method="POST">
             <div class="grid grid-cols-2 gap-4 pb-6">
                 <div class="flex flex-col">
                     <label for="blog_title" class="text-white pb-2">Blog Title</label>
@@ -39,10 +43,21 @@ require_once (__DIR__.'/../utils/loader.php');
                     <label for="blog_secondary_title" class="text-white pb-2">Secondary Title</label>
                     <input required type="text" name="blog_secondary_title" id="blog_secondary_title" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50	 rounded-md">
                 </div>
+                <div class="flex flex-col col-span-2">
+                    <label for="blog_secondary_title" class="text-white pb-2">Cover Image URL</label>
+                    <input required type="url" name="blog_cover_image" id="blog_cover_image" class="h-[35px] bg-gray-300 p-3 outline-blue-500/50	 rounded-md">
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <label for="blog_secondary_title" class="text-white pb-2">Blog Description <b>(SEO)</b></label>
+                <textarea required type="text" name="blog_description" id="blog_description" class="h-[150px] resize-none bg-gray-300 p-3 outline-blue-500/50 rounded-md"></textarea>
             </div>
 
-            <label for="editor" class="text-white pb-2">Your Blog Content</label>
-            <textarea name="content" id="editor" cols="30" rows="10"></textarea>
+
+            <div class="py-3">
+                <label for="editor" class="text-white pb-2">Your Blog Content</label>
+                <textarea name="content" id="editor" cols="30" rows="10"></textarea>
+            </div>
 
             
 

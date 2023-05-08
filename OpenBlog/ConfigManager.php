@@ -3,15 +3,11 @@ class ConfigManager
 {
     private $configFile;
 
-    public function __construct()
-
-    {
-        $file_auth_token = $this->generate_auth_token();
+    public function __construct() {
         $this->configFile = 'config.php';
         if(!file_exists($this->configFile)) {
             $this->config = array(
                 'is_installed' => false,
-                'file_upload_auth_token' => $file_auth_token,
                 'selected_theme' => '',
                 'debug_mode' => false,
                 'website_name' => 'Open Blog',
