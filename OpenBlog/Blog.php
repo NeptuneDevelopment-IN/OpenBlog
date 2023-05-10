@@ -13,7 +13,7 @@ class Blog
 
     // Get the blog by filtering it through the database and returning the data as an array.
     public function getBlog($id) {
-        $stmt = $this->db->conn->prepare("SELECT * FROM blog_data WHERE blog_id = ?");
+        $stmt = $this->db->conn->prepare("SELECT * FROM blog_data WHERE slug = ?");
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $data = $stmt->get_result()->fetch_array(MYSQLI_ASSOC);
@@ -107,11 +107,13 @@ class Blog
 
 
     public function addBlog($title, $secondary_title, $content, $author, $tags, $category_id, $description, $banner_url) {
+
         $date_created = time();
         $blog_id = $this->generateBlogID();
-
-        $stmt = $this->db->conn->prepare("INSERT INTO blog_data (title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags, category, description, banner_url) VALUES (?, ?, ?, ?, ?, ?, 0, 0, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssissss", $title, $secondary_title, $content, $author, $blog_id, $date_created, $tags, $category_id, $description, $banner_url);
+        $url_id = $this->slugify($title);
+        $url_id = $url_id."-{$blog_id}";
+        $stmt = $this->db->conn->prepare("INSERT INTO blog_data (title, secondary_title, content, author, blog_id, date_created, likes, dislikes, tags, category, description, banner_url, slug) VALUES (?, ?, ?, ?, ?, ?, 0, 0, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssisssss", $title, $secondary_title, $content, $author, $blog_id, $date_created, $tags, $category_id, $description, $banner_url, $url_id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -131,6 +133,22 @@ class Blog
         }
         return false;
     }
+
+    private function slugify($string): string {
+            // Remove any special characters and replace spaces with hyphens
+            $string = preg_replace('/[^a-zA-Z0-9\s]/', '', $string);
+            $string = strtolower(str_replace(' ', '-', $string));
+
+            // Remove any consecutive hyphens
+            $string = preg_replace('/-+/', '-', $string);
+
+            // Trim any leading or trailing hyphens
+            $string = trim($string, '-');
+
+            return $string;
+    }
+
+
 
 
     public function getBlogByCategory($cat_id) {

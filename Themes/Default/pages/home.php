@@ -24,7 +24,7 @@
             $stmt = $db->conn->prepare($sql);
             $stmt->bind_param('s', $query);
             $stmt->execute();
-            $blog_data = mysqli_fetch_all($stmt->get_result());
+            $blog_data = mysqli_fetch_all($stmt->get_result(), MYSQLI_ASSOC);
 
         ?>
         <h1 class="text-3xl md:text-5xl font-bold font-inter text-gray-800 py-6">Your Search Results</h1>
@@ -34,12 +34,13 @@
                 if ($blog_data) {
 
                     for ($i=0; $i<count($blog_data); $i++) {
-                        $blog_id = $blog_data[$i][1];
-                        $title = $blog_data[$i][2];
-                        $sec_title = $blog_data[$i][3];
-                        $date = date("l d F Y", $blog_data[$i][6]);
+                        $blog_id = $blog_data[$i]['blog_id'];
+                        $title = $blog_data[$i]['title'];
+                        $sec_title = $blog_data[$i]['secondary_title'];
+                        $date = date("l d F Y", $blog_data[$i]['date_created']);
+                        $slug = $blog_data[$i]['slug'];
                         echo("
-                        <a href='/blog/{$blog_id}'>
+                        <a href='/blog/{$slug}'>
                                 <div class='bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6'>
                                     <h2 class='text-xl md:text-2xl font-bold text-gray-800 leading-tight'>{$title}</h2>
                                     <p class='text-base md:text-lg text-gray-600 mb-4'>{$sec_title}</p>
@@ -71,11 +72,12 @@
                         $blog_id = $item['blog_id'];
                         $title = $item['title'];
                         $sec_title = $item['secondary_title'];
-                        $date = $item['date_created']
+                        $date = $item['date_created'];
+                        $slug = $item['slug'];
 
                         ?>
                         <div class="pb-3">
-                            <a href="/blog/<?= $blog_id ?>" >
+                            <a href="/blog/<?= $slug ?>" >
                                 <div class="bg-white hover:bg-gray-100 shadow-lg rounded-lg p-6">
                                     <h2 class="text-xl md:text-2xl font-bold text-gray-800 leading-tight"><?= $title ?></h2>
                                     <p class="text-base md:text-lg text-gray-600 mb-4"><?= $sec_title ?></p>

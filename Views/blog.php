@@ -94,17 +94,5 @@ if(in_array($currentTheme, $themeList)) {
 
 
 </style>
-<script>
-    function replaceSpacesWithDashes(str) {
-        // Use regex to replace all spaces with dashes
-        const modifiedStr = str.replace(/\s+/g, '-');
-        // Remove any dashes at the end of the string
-        const trimmedStr = modifiedStr.replace(/-+$/, '');
-        return trimmedStr.toLowerCase();
-    }
 
-    replaced = replaceSpacesWithDashes("<?php echo $blog_info['title'] ?>");
-
-    history.pushState(null, null, `/blog/<?php echo $blog_info['blog_id'] ?>?${replaced}`)
-</script>
 

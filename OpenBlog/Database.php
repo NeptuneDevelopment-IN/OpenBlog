@@ -43,6 +43,7 @@ class Database {
             CREATE TABLE IF NOT EXISTS {$table_blog_data} (
                 id int PRIMARY KEY AUTO_INCREMENT,
                 blog_id VARCHAR(32) UNIQUE,
+                slug VARCHAR(248) UNIQUE,
                 title VARCHAR(64),
                 secondary_title VARCHAR(32),
                 description VARCHAR(300),

@@ -220,6 +220,14 @@ class Authenticator {
         return false;
     }
 
+    public function getUsers($num = 100) {
+        $stmt = $this->db->conn->prepare("SELECT * FROM user_data LIMIT ?");
+        $stmt->bind_param("i", $num);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    }
+
 
 
 }

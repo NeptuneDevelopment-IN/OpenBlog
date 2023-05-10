@@ -110,6 +110,18 @@ $router->post('/ob-administrator/edit', function () {
     include('Admin/views/edit-processor.php');
 });
 
+$router->get('/ob-administrator/users', function () {
+    include('Admin/views/users.php');
+});
+
+$router->post('/ob-administrator/users/new', function () {
+    include('Admin/views/new-user.php');
+});
+
+$router->get('/ob-administrator/users/new', function () {
+    include('Admin/views/new-user.php');
+});
+
 $router->get('/ob-administrator/pages', function () {
     include('Admin/views/pages.php');
 });

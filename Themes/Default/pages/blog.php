@@ -69,7 +69,7 @@
                 </div>
 
             </div>
-            <img src="{{ cover_image }}" class="w-full h-[300px] overflow-scroll shadow-lg rounded-lg" alt="{{ secondary_title }}">
+            <img src="{{ cover_image }}" class="w-full h-[300px] overflow-hidden shadow-lg rounded-lg" alt="{{ secondary_title }}">
             <div class="pt-6 px-3 border-2 border-gray-300 shadow-lg">
                 {{ content }}
             </div>
