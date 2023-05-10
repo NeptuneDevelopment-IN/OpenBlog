@@ -18,7 +18,7 @@
     <?php
     require_once(__DIR__.'/../../OpenBlog/Blog.php');
     $blog = new Blog();
-    $blog_data = $blog->getBlog($id);
+    $blog_data = $blog->getBlogById($id);
     $blog_title = $blog_data['title'];
     $blog_secondary_title = $blog_data['secondary_title'];
     $blog_content = $blog_data['content'];

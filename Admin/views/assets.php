@@ -108,6 +108,10 @@ ini_set('upload_max_filesize', '50M');
         }
         echo '</div>';
         ?>
+
+</div>
+    <?php include __DIR__.'/../components/footer.php' ?>
+
 </div>
 <style>
     body {

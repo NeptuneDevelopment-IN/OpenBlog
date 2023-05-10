@@ -25,6 +25,8 @@ include(__DIR__.'/../components/sidebar.php');
             </div>
         </form>
     </div>
+    <?php include __DIR__.'/../components/footer.php' ?>
+
 </div>
 </body>
 </html>

@@ -59,6 +59,8 @@ require_once (__DIR__.'/../utils/loader.php');
 
             ?>
         </div>
+        <?php include __DIR__.'/../components/footer.php' ?>
+
     </div>
 
 

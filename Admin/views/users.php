@@ -73,6 +73,7 @@ include(__DIR__.'/../utils/loader.php');
                 <!-- Add more rows here -->
                 </tbody>
             </table>
+        <?php include __DIR__.'/../components/footer.php' ?>
 
 
     </div>

@@ -128,8 +128,12 @@ include(__DIR__. '/../utils/loader.php');
                         Next <i class="fas fa-chevron-right"></i>
                     </a>
                 <?php endif; ?>
-            </div>
 
+            </div>
+        </div>
+        <?php include __DIR__.'/../components/footer.php' ?>
+
+    </div>
 
 
 </body>

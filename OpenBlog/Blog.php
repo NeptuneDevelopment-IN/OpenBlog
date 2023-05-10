@@ -23,6 +23,16 @@ class Blog
         return false;
     }
 
+    public function getBlogById($id) {
+        $stmt = $this->db->conn->prepare("SELECT * FROM blog_data WHERE blog_id = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $data = $stmt->get_result()->fetch_array(MYSQLI_ASSOC);
+        if ($data) {
+            return $data;
+        }
+        return false;
+    }
 
     //Function to get latest 'n' number the blogs from the server as an array
     public function getNumBlogs($limit = 10) {

@@ -93,6 +93,8 @@ require_once (__DIR__.'/../utils/loader.php');
             }
 
         </script>
+        <?php include __DIR__.'/../components/footer.php' ?>
+
     </div>
 <?php
 if(isset($_POST['change_data'])) {
