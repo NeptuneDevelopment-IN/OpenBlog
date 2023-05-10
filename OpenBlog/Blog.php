@@ -133,10 +133,10 @@ class Blog
         $stmt->close();
     }
 
-    public function updateBlog($id, $title, $sec_title, $tags, $category, $content) {
+    public function updateBlog($id, $title, $sec_title, $tags, $category, $content, $description, $banner_url) {
         $content = mysqli_real_escape_string($this->db->conn, $content);
-        $stmt = $this->db->conn->prepare("UPDATE blog_data SET title=?, secondary_title=?, tags=?, category=?, content=? WHERE blog_id=?");
-        $stmt->bind_param("sssssi", $title, $sec_title, $tags, $category, $content, $id);
+        $stmt = $this->db->conn->prepare("UPDATE blog_data SET title=?, secondary_title=?, tags=?, category=?, content=?, description=?, banner_url=? WHERE blog_id=?");
+        $stmt->bind_param("sssssiss", $title, $sec_title, $tags, $category, $content, $id, $description, $banner_url);
         $stmt->execute();
         if($stmt->affected_rows > 0) {
             return true;

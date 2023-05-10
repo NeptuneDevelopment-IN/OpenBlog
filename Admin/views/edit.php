@@ -42,11 +42,11 @@
                 </div>
                 <div class="w-full mx-auto col-span-2">
                     <label for="email" class="block font-medium text-sm text-gray-400 py-3">Blog Cover Image URL</label>
-                    <input type="url" id="email" name="blog_cover_image" class="block h-[40px] p-2 text-gray-300 w-full rounded-md bg-gray-800 border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" value="<?php echo $blog_cover ?>" required>
+                    <input type="url" id="email" name="banner_url" class="block h-[40px] p-2 text-gray-300 w-full rounded-md bg-gray-800 border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" value="<?php echo $blog_cover ?>" required>
                 </div>
                 <div class="w-full mx-auto col-span-2">
                     <label for="email" class="block font-medium text-sm text-gray-400 py-3">Blog Description</label>
-                    <textarea id="email" name="blog_cover_image" class="block h-[150px] p-2 text-gray-300 w-full rounded-md bg-gray-800 border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required><?php echo $blog_description ?></textarea>
+                    <textarea id="email" name="blog_description" class="block h-[150px] p-2 text-gray-300 w-full rounded-md bg-gray-800 border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required><?php echo $blog_description ?></textarea>
                 </div>
                 <div class="py-3 col-span-2">
                     <label for="summernote" class="block font-medium text-sm text-gray-400 py-3">Blog Content</label>

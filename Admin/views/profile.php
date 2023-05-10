@@ -17,7 +17,7 @@ require_once (__DIR__.'/../utils/loader.php');
         <h1 class="text-2xl font-bold text-gray-200">Administrator Profile Settings</h1>
         <form action="/ob-administrator/profile" method="post">
             <h1 class="text-white font-semibold py-3">User ID: <?php echo $_SESSION['user_id'] ?></h1>
-            <div class="grid gap-3 grid-cols-2">
+            <div class="grid gap-3  grid-cols-1 md:grid-cols-2">
 
                 <div class="py-1">
                     <label for="first_name" class="block mb-2 text-sm font-medium text-white">Nickname</label>

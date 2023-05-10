@@ -15,7 +15,7 @@
     <h1 class="text-3xl text-gray-800 font-bold mb-6">Edit your profile</h1>
     <h1 class="text-2xl text-gray-800 font-bold bg-green-500 p-3 rounded-md">Basic Information</h1>
     <p class="my-4"><b>User ID:</b> <?php echo($_SESSION['user_id']) ?></p>
-    <form action="/profile" method="post" class="grid grid-cols-2 gap-4">
+    <form action="/profile" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
             <label for="nickname" class="block font-medium text-gray-700 mb-2">Nickname</label>
             <input type="text" name="nickname" value="<?php echo $_SESSION['nickname'] ?>" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500" id="nickname">
@@ -35,7 +35,7 @@
     <h1 class="text-3xl text-gray-800 font-bold mb-6">Account Settings</h1>
     <h1 class="text-2xl text-gray-800 font-bold bg-green-500 p-3 rounded-md">Change your password</h1>
     <div>
-        <form class="grid grid-cols-2 gap-3 my-4" action="/profile" method="post">
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4" action="/profile" method="post">
             <div>
                 <label for="nickname" class="block font-medium text-gray-700 mb-2">Current Password</label>
                 <input type="password" name="current_password" placeholder="Your Current Password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500" id="nickname">
