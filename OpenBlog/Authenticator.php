@@ -107,7 +107,7 @@ class Authenticator {
         return false;
     }
 
-    public function createUser($email, $password, $nickname, $bio = "", $is_admin) {
+    public function createUser($email, $password, $nickname, $is_admin, $bio = "") {
         if($this->userExists($email)) {
             return false;
         }

@@ -59,7 +59,7 @@
         } else {
             require_once(__DIR__.'/../../OpenBlog/Authenticator.php');
             $auth = new Authenticator();
-            $auth->createUser($email, $password, $nickname, "", $is_admin);
+            $auth->createUser($email, $password, $nickname, $is_admin);
         }
 
     }

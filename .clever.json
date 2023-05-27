@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_4ad8de23-e30b-4f06-9872-f67b8aa8316d",
+      "org_id": "user_967b3a6f-9596-474a-9fbe-91c97d52acee",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_4ad8de23-e30b-4f06-9872-f67b8aa8316d.git",
+      "name": "OpenBlog-Test",
+      "alias": "OpenBlog-Test"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+Index: config.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"is_installed\":false,\"debug_mode\":false,\"database_name\":\"test\",\"database_host\":\"localhost\",\"database_user\":\"root\",\"database_pass\":\"\",\"database_port\":3306,\"website_name\":\"Open Blog\",\"website_description\":\"Me website Description\\r\\n\"}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config.json b/config.json
+--- a/config.json	(revision d0b7072958d2d27805485b43edcba9293fd1d578)
++++ b/config.json	(date 1680694233054)
+@@ -1,1 +1,1 @@
+-{"is_installed":false,"debug_mode":false,"database_name":"test","database_host":"localhost","database_user":"root","database_pass":"","database_port":3306,"website_name":"Open Blog","website_description":"Me website Description\r\n"}
+\ No newline at end of file
++{"is_installed":false,"debug_mode":false,"database_name":"","database_host":"","database_user":"","database_pass":"","database_port":3306,"website_name":"Open Blog","website_description":"awfgf","database_username":"","database_password":""}
+\ No newline at end of file
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>![banner](https://user-images.githubusercontent.com/77274581/226105884-c7b73339-767d-41be-960b-0a3695386023.PNG)\r\n<p align=center>Open Blog is a upcoming free and open-source personal blogging software. It is under heavy development and testing</p>\r\n\r\n<p align=center>© 2023 Neptune Development</p>\r\n\r\n<H3>How much work have you done here while i am concentrating on purereader?, [Hunter]</H3>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision d0b7072958d2d27805485b43edcba9293fd1d578)
++++ b/README.md	(date 1680694108853)
+@@ -3,4 +3,3 @@
+ 
+ <p align=center>© 2023 Neptune Development</p>
+ 
+-<H3>How much work have you done here while i am concentrating on purereader?, [Hunter]</H3>
